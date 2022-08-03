@@ -1,6 +1,7 @@
 #include "Renderer.h"
 #include <SDL.h>
 #include <SDL_ttf.h>
+#include <SDL_image.h>
 
 namespace crae
 {
@@ -8,6 +9,7 @@ namespace crae
 	void Renderer::Initialize()
 	{
 		SDL_Init(SDL_INIT_VIDEO);
+		IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
 		TTF_Init();
 	}
 
@@ -26,6 +28,7 @@ namespace crae
 		SDL_DestroyRenderer(m_renderer);
 		SDL_DestroyWindow(m_window);
 		TTF_Quit();
+		IMG_Quit();
 	}
 
 	void Renderer::CreateWindow(const char* name, int width, int height)
@@ -69,5 +72,18 @@ namespace crae
 	{
 		SDL_SetRenderDrawColor(m_renderer, color.r, color.g, color.b, color.a);
 		SDL_RenderDrawPointF(m_renderer, v.x, v.y);
+	}
+	void Renderer::Draw(std::shared_ptr<Texture> texture, const Vector2& position, float angle)
+	{
+		Vector2 size = texture->GetSize();
+
+		SDL_Rect dest;
+		// !! make sure to cast to int to prevent compiler warnings 
+			dest.x = position.x;// !! set to position x 
+			dest.y = position.y;// !! set to position y 
+			dest.w = size.x;// !! set to size x 
+			dest.h = size.y;// !! set to size y 
+
+			SDL_RenderCopyEx(m_renderer, texture -> m_texture, nullptr, &dest, angle, nullptr, SDL_FLIP_NONE);
 	}
 }

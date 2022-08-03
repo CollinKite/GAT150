@@ -20,6 +20,9 @@ int main()
 	crae::g_renderer.CreateWindow("Astroids", 800, 600);
 	crae::g_renderer.SetClearColor(crae::Color{ 0,0,0,255 });
 
+	std::shared_ptr<crae::Texture> texture = std::make_shared<crae::Texture>();
+	texture->Create(crae::g_renderer, "jesus.png");
+
 	bool quit = false;
 	while (!quit)
 	{
@@ -27,6 +30,7 @@ int main()
 		crae::g_inputSystem.Update();
 		crae::g_time.Tick(); //Increment time, and frame time
 		crae::g_renderer.BeginFrame();
+		crae::g_renderer.Draw(texture, { 400, 300 }, 0);
 		crae::g_renderer.EndFrame();
 	}
 	crae::g_renderer.Shutdown();
