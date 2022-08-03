@@ -23,7 +23,8 @@ namespace crae
         SDL_Surface* surface = IMG_Load(filename.c_str()); // !! call IMG_Load with c-string of filename 
         if (surface == nullptr)
         {
-            g_logger.Log("error loading %s", filename.c_str());
+            LOG(SDL_GetError());
+            return false;
         }
 
         // create texture 
@@ -31,6 +32,12 @@ namespace crae
         
         // !! the first parameter takes in the m_renderer from renderer 
         m_texture = SDL_CreateTextureFromSurface(renderer.m_renderer, surface);
+        if (m_texture == nullptr)
+        {
+            LOG(SDL_GetError());
+            SDL_FreeSurface(surface);
+            return false;
+        }
         SDL_FreeSurface(surface);
             // !! call SDL_FreeSurface with surface as the parameter 
             // !! no need to keep surface after texture is created 
@@ -42,6 +49,7 @@ namespace crae
     {
         SDL_Point point;
         SDL_QueryTexture(m_texture, nullptr, nullptr, &point.x, &point.y);
+
 
         return crae::Vector2{ point.x, point.y };// !! return Vector2 of point.x, point.y 
     }

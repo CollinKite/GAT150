@@ -1,5 +1,10 @@
 #pragma once
 
+#ifdef _DEBUG
+	#define LOG(format, ...) crae::g_logger.Log(format, __VA_ARGS__)
+#else
+	#define LOG(format, ...) ((void)0)
+#endif //_DEGUBG
 
 namespace crae
 {
