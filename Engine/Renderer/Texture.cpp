@@ -1,5 +1,6 @@
 #include "Texture.h" 
 #include "Renderer.h" 
+#include "Core/Logger.h"
 
 #include <string>
 #include <SDL.h> 
@@ -20,6 +21,10 @@ namespace crae
     {
         // load surface 
         SDL_Surface* surface = IMG_Load(filename.c_str()); // !! call IMG_Load with c-string of filename 
+        if (surface == nullptr)
+        {
+            g_logger.Log("error loading %s", filename.c_str());
+        }
 
         // create texture 
         // !! call SDL_CreateTextureFromSurface passing in renderer and surface 

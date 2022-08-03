@@ -5,7 +5,13 @@
 
 int main()
 {
-	std::cout << "hello world" << std::endl;
+
+	int i = 10;
+	float f = 3.5f;
+	bool b = true;
+	if (b) std::cout << "true\n";
+
+	printf("hello world %d %f \n", 5, f);
 
 	crae::initializeMemory(); //Calls debug function for mem leak
 	crae::SetFilePath("../Assets");
@@ -17,11 +23,11 @@ int main()
 	crae::g_inputSystem.Initialize();
 	crae::g_audioSystem.Initialize();
 
-	crae::g_renderer.CreateWindow("Astroids", 800, 600);
+	crae::g_renderer.CreateWindow("Game Engine", 800, 600);
 	crae::g_renderer.SetClearColor(crae::Color{ 0,0,0,255 });
 
 	std::shared_ptr<crae::Texture> texture = std::make_shared<crae::Texture>();
-	texture->Create(crae::g_renderer, "jesus.png");
+	texture->Create(crae::g_renderer, "jesu.png");
 
 	bool quit = false;
 	while (!quit)
