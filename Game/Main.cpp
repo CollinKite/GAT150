@@ -21,7 +21,7 @@ int main()
 	crae::g_renderer.SetClearColor(crae::Color{ 0,0,0,255 });
 
 	std::shared_ptr<crae::Texture> texture = std::make_shared<crae::Texture>();
-	texture->Create(crae::g_renderer, "jesuss.png");
+	texture->Create(crae::g_renderer, "jesus.png");
 
 	bool quit = false;
 	while (!quit)
