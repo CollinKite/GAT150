@@ -8,6 +8,6 @@ namespace crae
 	{
 		Vector2 postition; //x y
 		float rotation; //angle
-		float scale;
+		Vector2 scale{1,1};
 	};
 }

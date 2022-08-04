@@ -10,7 +10,7 @@ namespace crae
 		Load(filename);
 		m_radius = CalculateRadius();
 	}
-	void Model::Draw(Renderer& renderer, Vector2& position, float angle, float scale)
+	void Model::Draw(Renderer& renderer, Vector2& position, float angle, const Vector2& scale)
 	{
 		//crae::Color color;
 		//color.r = crae::random(256);
