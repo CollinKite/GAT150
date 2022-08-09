@@ -1,8 +1,81 @@
 #pragma once
+#include "Math/Vector2.h"
+
 namespace crae
 {
-	struct Matrix
+	struct Matrix2x2
 	{
+		Vector2 rows[2]; //[2][2]
+
+		Matrix2x2() = default;
+		Matrix2x2(const Vector2& row1, const Vector2& row2);
+
+		Vector2 operator [] (size_t index) const { return rows[index]; }
+		Vector2& operator [] (size_t index) { return rows[index]; }
+
+		Vector2 operator * (const Vector2& v); //v2 = mx22 * v2
+
+		static Matrix2x2 CreateScale(const Vector2& scale );
+		static Matrix2x2 CreateScale(float scale );
+		static Matrix2x2 CreateRoation(float radians);
+
+		static const Matrix2x2 identity;
+		static const Matrix2x2 zero;
 
 	};
+
+	
+
+	inline Matrix2x2::Matrix2x2(const Vector2& row1, const Vector2& row2)
+	{
+		rows[0] = row1;
+		rows[1] = row2;
+	}
+
+	inline Vector2 Matrix2x2::operator*(const Vector2& v)
+	{
+		Vector2 result;
+		
+		return result;
+	}
+
+	inline Matrix2x2 Matrix2x2::CreateScale(const Vector2& scale)
+	{
+		Matrix2x2 mx;
+		// non-uniform scale
+		//sX 0
+		//0 sY
+
+		mx[0] = Vector2{ scale.x, 0.0f };
+		mx[1] = Vector2{ 0.0f, scale.y };
+
+		return mx;
+	}
+
+	inline Matrix2x2 Matrix2x2::CreateScale(float scale)
+	{
+		Matrix2x2 mx;
+		//uniform scale
+		//s 0
+		//0 s
+
+		mx[0] = Vector2{ scale, 0.0f };
+		mx[1] = Vector2{ 0.0f, scale };
+
+		return mx;
+	}
+
+	inline Matrix2x2 Matrix2x2::CreateRoation(float radians)
+	{
+		Matrix2x2 mx;
+
+		float c = std::cos(radians);
+		float s = std::sin(radians);
+		
+		mx[0] = Vector2{c, -s};
+		mx[1] = Vector2{s, c};
+
+		return mx;
+	}
+
 }
