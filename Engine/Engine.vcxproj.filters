@@ -95,7 +95,7 @@
     <ClCompile Include="Components\Audio.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Math\Matrx2x2.cpp">
+    <ClCompile Include="Math\Matrix2x2.cpp">
       <Filter>Source Files\Math</Filter>
     </ClCompile>
   </ItemGroup>
@@ -181,7 +181,13 @@
     <ClInclude Include="Components\Physics.h">
       <Filter>Source Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Matrx2x2.h">
+    <ClInclude Include="Math\Matrix2x2.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector3.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Matrix3x3.h">
       <Filter>Source Files\Math</Filter>
     </ClInclude>
   </ItemGroup>

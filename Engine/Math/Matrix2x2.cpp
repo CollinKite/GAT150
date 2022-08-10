@@ -1,4 +1,4 @@
-#include "Matrx2x2.h"
+#include "Matrix2x2.h"
 
 namespace crae
 {

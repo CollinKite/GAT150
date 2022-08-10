@@ -1,7 +1,7 @@
 #include "PlayerComponent.h"
 #include "Engine.h"
+#include "Components/Physics.h"
 #include <iostream>
-#include <Components/Physics.h>
 
 void crae::PlayerComponent::Update()
 {

@@ -56,7 +56,7 @@ namespace crae
 		//Functions
 		float LengthSqr();
 		float Length();
-		float GetAngle();
+	
 
 		float DistanceSqr(const Vector2& v);
 		float Distance(const Vector2& v);
@@ -64,6 +64,7 @@ namespace crae
 		Vector2 Normalized();
 		void Normalize();
 
+		float GetAngle();
 		static Vector2 Rotate(const Vector2& v, float angle);
 
 		static const Vector2 one;
@@ -106,11 +107,5 @@ namespace crae
 		float y = v.x * std::sin(angle) + v.y * std::cos(angle);
 
 		return Vector2{x, y};
-	}
-
-	inline Vector2 Vector2::Rotate(const Vector2& v, float radians)
-	{
-		float x = v.x * std::cos(radians) - v.y * std::sin(radians);
-		float x = v.x * std::cos(radians) - v.y * std::sin(radians);
 	}
 }

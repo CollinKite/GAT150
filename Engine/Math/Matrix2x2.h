@@ -14,6 +14,7 @@ namespace crae
 		Vector2& operator [] (size_t index) { return rows[index]; }
 
 		Vector2 operator * (const Vector2& v); //v2 = mx22 * v2
+		Matrix2x2 operator * (const Matrix2x2& mx); //mx22 = mx22 * mx22
 
 		static Matrix2x2 CreateScale(const Vector2& scale );
 		static Matrix2x2 CreateScale(float scale );
@@ -35,8 +36,23 @@ namespace crae
 	inline Vector2 Matrix2x2::operator*(const Vector2& v)
 	{
 		Vector2 result;
+
+		result.x = v.x * rows[0][0] + v.y * rows[0][1];
+		result.y = v.x * rows[1][0] + v.y * rows[1][1];
 		
 		return result;
+	}
+
+	inline Matrix2x2 Matrix2x2::operator*(const Matrix2x2& mx)
+	{
+		Matrix2x2 mx2;
+
+		mx2[0][0] = mx2[0][0] * mx[0][0] + mx2[0][1] * mx[1][0];
+		mx2[0][1] = mx2[0][0] * mx[0][1] + mx2[0][1] * mx[1][1];
+		mx2[1][0] = mx2[1][0] * mx[0][0] + mx2[1][1] * mx[1][0];
+		mx2[1][1] = mx2[1][0] * mx[0][1] + mx2[1][1] * mx[1][1];
+
+		return mx2;
 	}
 
 	inline Matrix2x2 Matrix2x2::CreateScale(const Vector2& scale)
