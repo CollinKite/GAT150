@@ -89,14 +89,20 @@
     <ClCompile Include="Components\SpriteComponent.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Components\Physics.cpp">
+    <ClCompile Include="Components\PhysicsComponent.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Components\Audio.cpp">
+    <ClCompile Include="Components\AudioComponent.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="Math\Matrix2x2.cpp">
       <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Matrix3x3.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\ModelComponent.cpp">
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -175,10 +181,10 @@
     <ClInclude Include="Components\SpriteComponent.h">
       <Filter>Source Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Audio.h">
+    <ClInclude Include="Components\AudioComponent.h">
       <Filter>Source Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Physics.h">
+    <ClInclude Include="Components\PhysicsComponent.h">
       <Filter>Source Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="Math\Matrix2x2.h">
@@ -189,6 +195,9 @@
     </ClInclude>
     <ClInclude Include="Math\Matrix3x3.h">
       <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\ModelComponent.h">
+      <Filter>Source Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

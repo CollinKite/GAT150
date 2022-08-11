@@ -85,7 +85,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;fmod_vc.lib;SDL2_ttf.lib</AdditionalDependencies>
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)ThirdParty\fmod\core\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2-2.0.22\lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -111,7 +111,7 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)ThirdParty\fmod\core\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2-2.0.22\lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;fmod_vc.lib;SDL2_ttf.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -129,7 +129,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;fmod_vc.lib;SDL2_ttf.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)ThirdParty\fmod\core\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2-2.0.22\lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
@@ -153,13 +153,14 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)ThirdParty\fmod\core\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2-2.0.22\lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;fmod_vc.lib;SDL2_ttf.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Audio\AudioSystem.h" />
-    <ClInclude Include="Components\Audio.h" />
-    <ClInclude Include="Components\Physics.h" />
+    <ClInclude Include="Components\AudioComponent.h" />
+    <ClInclude Include="Components\ModelComponent.h" />
+    <ClInclude Include="Components\PhysicsComponent.h" />
     <ClInclude Include="Components\PlayerComponent.h" />
     <ClInclude Include="Components\RenderComponent.h" />
     <ClInclude Include="Components\SpriteComponent.h" />
@@ -190,8 +191,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Audio\AudioSystem.cpp" />
-    <ClCompile Include="Components\Audio.cpp" />
-    <ClCompile Include="Components\Physics.cpp" />
+    <ClCompile Include="Components\AudioComponent.cpp" />
+    <ClCompile Include="Components\ModelComponent.cpp" />
+    <ClCompile Include="Components\PhysicsComponent.cpp" />
     <ClCompile Include="Components\PlayerComponent.cpp" />
     <ClCompile Include="Components\SpriteComponent.cpp" />
     <ClCompile Include="Core\File.cpp" />
@@ -205,6 +207,7 @@
     <ClCompile Include="Math\Color.cpp" />
     <ClCompile Include="Math\MathUtils.cpp" />
     <ClCompile Include="Math\Matrix2x2.cpp" />
+    <ClCompile Include="Math\Matrix3x3.cpp" />
     <ClCompile Include="Math\Vector2.cpp" />
     <ClCompile Include="Renderer\Font.cpp" />
     <ClCompile Include="Renderer\Model.cpp" />

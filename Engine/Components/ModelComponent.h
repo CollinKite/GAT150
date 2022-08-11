@@ -3,12 +3,12 @@
 
 namespace crae
 {
-	class Texture;
+	class Model;
 
-	class SpriteComponent : public RenderComponent
+	class ModelComponent : public RenderComponent
 	{
 	public:
-		std::shared_ptr<Texture> m_texture;
+		std::shared_ptr<Model> m_model;
 
 	public:
 

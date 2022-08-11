@@ -1,6 +1,6 @@
 #include "PlayerComponent.h"
 #include "Engine.h"
-#include "Components/Physics.h"
+#include "Components/PhysicsComponent.h"
 #include <iostream>
 
 void crae::PlayerComponent::Update()

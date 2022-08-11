@@ -1,5 +1,8 @@
 #include "Model.h"
-#include "../Core/File.h"	
+#include "Core/File.h"	
+#include "Core/Logger.h"
+#include "Math/Transform.h"
+
 #include <sstream>
 #include <iostream>
 
@@ -9,6 +12,15 @@ namespace crae
 	{
 		Load(filename);
 		m_radius = CalculateRadius();
+	}
+	bool Model::Create(const std::string& filename)
+	{
+		if (!Load(filename))
+		{
+			LOG("Error Could Not Create %s", filename.c_str());
+			return false;
+		}
+		return true;
 	}
 	void Model::Draw(Renderer& renderer, Vector2& position, float angle, const Vector2& scale)
 	{
@@ -27,11 +39,25 @@ namespace crae
 			renderer.DrawLine(p1, p2, m_color);
 		}
 	}
-	void Model::Load(const std::string& filename)
+	void Model::Draw(Renderer& renderer, const Transform& transform)
+	{
+		for (int i = 0; i < m_points.size() - 1; i++)
+		{
+			crae::Vector2 p1 = crae::Vector2::Rotate((m_points[i] * math::DegToRad(transform.scale)), math::DegToRad(transform.rotation)) + math::DegToRad(transform.position);
+			crae::Vector2 p2 = crae::Vector2::Rotate((m_points[i + 1] * math::DegToRad(transform.scale)), math::DegToRad(transform.rotation)) + math::DegToRad(transform.position);;
+
+			renderer.DrawLine(p1, p2, m_color);
+		}
+	}
+	bool Model::Load(const std::string& filename)
 	{
 		std::string buffer;
 
-		crae::ReadFile(filename, buffer);
+		if (!crae::ReadFile(filename, buffer))
+		{
+			LOG("Error Could not load model %s", filename.c_str());
+			return false;
+		}
 
 		// read color
 		std::istringstream stream(buffer);
@@ -51,6 +77,7 @@ namespace crae
 
 			m_points.push_back(point);
 		}
+		return true;
 	}
 	float Model::CalculateRadius()
 	{

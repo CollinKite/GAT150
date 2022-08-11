@@ -20,9 +20,9 @@
 
 #include "Components/PlayerComponent.h"
 #include "Components/SpriteComponent.h"
-#include "Components/Audio.h"
-#include "Components/Physics.h"
-
+#include "Components/AudioComponent.h"
+#include "Components/PhysicsComponent.h"
+#include "Components/ModelComponent.h"
 
 
 //#include <memory>
