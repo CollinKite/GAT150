@@ -9,8 +9,31 @@ namespace crae
 	struct Transform
 	{
 		Vector2 postition; //x y
-		float rotation; //angle
+		float rotation{0}; //angle
 		Vector2 scale{1,1};
+
+		Matrix3x3 matrix;
+
+		void Update()
+		{
+			Matrix3x3 mxScale = Matrix3x3::CreateScale(scale);
+			Matrix3x3 mxRotation = Matrix3x3::CreateRoation(math::DegToRad(rotation));
+			Matrix3x3 mxTranslation = Matrix3x3::CreateTranslation(postition);
+
+			matrix = { mxTranslation * mxRotation * mxScale }; //ORDER MATTERS (Right to Left is order)
+
+		}
+
+		void Update(const Matrix3x3& parent)
+		{
+			Matrix3x3 mxScale = Matrix3x3::CreateScale(scale);
+			Matrix3x3 mxRotation = Matrix3x3::CreateRoation(math::DegToRad(rotation));
+			Matrix3x3 mxTranslation = Matrix3x3::CreateTranslation(postition);
+
+			matrix = { mxTranslation * mxRotation * mxScale }; //ORDER MATTERS (Right to Left is order)
+			matrix = parent * matrix;
+
+		}
 
 		operator Matrix3x3 () const
 		{
@@ -18,7 +41,7 @@ namespace crae
 			Matrix3x3 mxRotation = Matrix3x3::CreateRoation(math::DegToRad(rotation));
 			Matrix3x3 mxTranslation = Matrix3x3::CreateTranslation(postition);
 
-			return { mxScale * mxRotation * mxTranslation };
+			return { mxTranslation * mxRotation * mxScale };
 		}
 
 	};

@@ -14,8 +14,9 @@
 #include "Renderer/Renderer.h"
 #include "Renderer/Font.h"
 #include "Renderer/Text.h"
-#include "Math/Random.h"
+#include "Renderer/Model.h"
 
+#include "Math/Random.h"
 #include "Math/MathUtils.h"
 
 #include "Components/PlayerComponent.h"

@@ -16,6 +16,8 @@ namespace crae
 		virtual void Update() override; //Overide method from Game Object
 		virtual void Draw(Renderer& renderer);
 
+		void AddChild(std::unique_ptr<Actor> child);
+
 		void AddComponent(std::unique_ptr<Component> component);
 
 		template<typename T>
@@ -35,11 +37,14 @@ namespace crae
 
 		bool m_loselife = false;
 		//physics
-		float m_damping = 1;
 		Vector2 m_velocity;
+		float m_damping = 1;
 
 		Scene* m_scene = nullptr;
+		Actor* m_parent = nullptr;
+
 		std::vector<std::unique_ptr<Component>> m_components;
+		std::vector<std::unique_ptr<Actor>> m_children;
 	};
 
 

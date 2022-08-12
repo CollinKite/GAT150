@@ -14,8 +14,8 @@ namespace crae
 		Vector3 operator [] (size_t index) const { return rows[index]; }
 		Vector3& operator [] (size_t index) { return rows[index]; }
 
-		Vector2 operator * (const Vector2& v); //v2 = mx33 * v2
-		Matrix3x3 operator * (const Matrix3x3& mx); //mx33 = mx33 * mx33
+		Vector2 operator * (const Vector2& v)const; //v2 = mx33 * v2
+		Matrix3x3 operator * (const Matrix3x3& mx)const; //mx33 = mx33 * mx33
 
 		static Matrix3x3 CreateScale(const Vector2& scale);
 		static Matrix3x3 CreateScale(float scale);
@@ -36,7 +36,7 @@ namespace crae
 		rows[2] = row3;
 	}
 
-	inline Vector2 Matrix3x3::operator*(const Vector2& v)
+	inline Vector2 Matrix3x3::operator*(const Vector2& v) const
 	{
 		Vector2 result;
 
@@ -46,7 +46,7 @@ namespace crae
 		return result;
 	}
 
-	inline Matrix3x3 Matrix3x3::operator*(const Matrix3x3& mx)
+	inline Matrix3x3 Matrix3x3::operator*(const Matrix3x3& mx) const
 	{
 		Matrix3x3 mx2;
 
@@ -113,9 +113,14 @@ namespace crae
 	inline Matrix3x3 Matrix3x3::CreateTranslation(const Vector2& translate)
 	{
 		Matrix3x3 mx = identity;
+		// 1 0 x
+		// 0 1 y
+		// 0 0 1
 
 		mx[0][2] = translate.y;
 		mx[1][2];
+
+		return mx;
 	}
 
 }

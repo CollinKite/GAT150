@@ -41,10 +41,12 @@ namespace crae
 	}
 	void Model::Draw(Renderer& renderer, const Transform& transform)
 	{
+		Matrix3x3 mx = transform.matrix;
+
 		for (int i = 0; i < m_points.size() - 1; i++)
 		{
-			crae::Vector2 p1 = crae::Vector2::Rotate((m_points[i] * math::DegToRad(transform.scale)), math::DegToRad(transform.rotation)) + math::DegToRad(transform.position);
-			crae::Vector2 p2 = crae::Vector2::Rotate((m_points[i + 1] * math::DegToRad(transform.scale)), math::DegToRad(transform.rotation)) + math::DegToRad(transform.position);;
+			crae::Vector2 p1 = mx * m_points[i];
+			crae::Vector2 p2 = mx * m_points[i + 1];
 
 			renderer.DrawLine(p1, p2, m_color);
 		}
