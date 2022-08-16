@@ -3,10 +3,11 @@
 
 namespace crae
 {
-	Font::Font(const std::string& filename, int fontSize)
+	Font::Font(const std::string& filename, void* data)
 	{
+		int* fontSize = static_cast<int*>(data);
 		// !! call Load() function below passing filename and fontSize 
-		Load(filename, fontSize);
+		Load(filename, *fontSize);
 	}
 
 	Font::~Font()

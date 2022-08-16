@@ -10,6 +10,7 @@
 
 #include "Input/InputSystem.h"
 #include "Audio/AudioSystem.h"
+#include "Resource/ResourceManager.h"
 
 #include "Renderer/Renderer.h"
 #include "Renderer/Font.h"
@@ -38,4 +39,5 @@ namespace crae
 	extern Renderer g_renderer;
 	extern Time g_time;
 	extern AudioSystem g_audioSystem;
+	extern ResourceManager g_resources;
 }
