@@ -77,6 +77,7 @@ namespace crae
 	};
 
 	std::istream& operator >> (std::istream& stream, Vector2& v);
+	std::ostream& operator << (std::ostream& stream, const Vector2& v);
 
 	inline float Vector2::LengthSqr() { return x * x + y * y; }
 

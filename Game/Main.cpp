@@ -8,7 +8,37 @@ int main()
 	crae::initializeMemory(); //Calls debug function for mem leak
 	crae::SetFilePath("../Assets");
 
+	rapidjson::Document document;
+	bool success = crae::json::Load("json.txt", document);
+	assert(success);
 
+	std::string str;
+	crae::json::Get(document, "string", str);
+	std::cout << str << std::endl;
+
+	bool b;
+	crae::json::Get(document, "boolean", b);
+	std::cout << b << std::endl;
+
+	int i1;
+	crae::json::Get(document, "integer1", i1);
+	std::cout << i1 << std::endl;
+
+	int i2;
+	crae::json::Get(document, "integer2", i2);
+	std::cout << i2 << std::endl;
+
+	float f;
+	crae::json::Get(document, "float", f);
+	std::cout << f << std::endl;
+
+	crae::Vector2 v2;
+	crae::json::Get(document, "vector2", v2);
+	std::cout << v2 << std::endl;
+
+	crae::Color color;
+	crae::json::Get(document, "color", color);
+	std::cout << color << std::endl;
 
 	//Create Systems
 	crae::g_renderer.Initialize();
@@ -23,43 +53,6 @@ int main()
 
 	//scene
 	crae::Scene scene;
-
-	//create actor
-	crae::Transform transform{ crae::Vector2{400,300}, 90, {3,3} };
-	std::unique_ptr<crae::Actor> actor = std::make_unique<crae::Actor>(transform);
-	std::unique_ptr<crae::PlayerComponent> component = std::make_unique<crae::PlayerComponent>();
-	std::unique_ptr<crae::SpriteComponent> s_component = std::make_unique<crae::SpriteComponent>();
-	std::unique_ptr<crae::AudioComponent> a_component = std::make_unique<crae::AudioComponent>();
-	std::unique_ptr<crae::PhysicsComponent> p_component = std::make_unique<crae::PhysicsComponent>();
-	std::unique_ptr<crae::ModelComponent> m_component = std::make_unique<crae::ModelComponent>();
-		
-	m_component->m_model = crae::g_resources.Get<crae::Model>("Models/player1.txt");
-	s_component->m_texture = crae::g_resources.Get<crae::Texture>("Textures/jesus.png", &crae::g_renderer);
-	//a_component->m_soundName = "laser";
-
-	actor->AddComponent(std::move(component));
-	//actor->AddComponent(std::move(s_component));
-	//actor->AddComponent(std::move(a_component));
-	actor->AddComponent(std::move(p_component));
-	actor->AddComponent(std::move(m_component));
-
-	//child
-	// 
-	crae::Transform transformChild{ crae::Vector2{10,10}, 0, {1,1} };
-	std::unique_ptr<crae::Actor> child = std::make_unique<crae::Actor>(transformChild);
-
-	std::unique_ptr<crae::ModelComponent> m_componentC = std::make_unique<crae::ModelComponent>();
-	m_componentC->m_model = crae::g_resources.Get<crae::Model>("Models/player1.txt");
-	child->AddComponent(std::move(m_componentC));
-	actor->AddChild(std::move(child));
-		
-
-
-
-
-	scene.Add(std::move(actor));
-
-	float angle = 0;
 
 	bool quit = false;
 	while (!quit)

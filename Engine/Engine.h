@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Serialization/Json.h"
+
 #include "Core\Memory.h" //header file to check for mem leak
 #include "Core/File.h"
 #include "Core/Time.h"
