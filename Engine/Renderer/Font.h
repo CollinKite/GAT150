@@ -13,7 +13,7 @@ namespace crae
 		Font() = default;
 		Font(const std::string& filename, void* data = nullptr);
 		~Font();
-		bool Create(const std::string& filenam) { return false; }
+		bool Create(std::string filename, ...) override;
 		void Load(const std::string& filename, int fontSize);
 		auto getFont() { return m_ttfFont; }
 

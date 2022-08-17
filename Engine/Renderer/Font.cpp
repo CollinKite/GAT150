@@ -7,7 +7,7 @@ namespace crae
 	{
 		int* fontSize = static_cast<int*>(data);
 		// !! call Load() function below passing filename and fontSize 
-		Load(filename, *fontSize);
+		Create(filename, *fontSize);
 	}
 
 	Font::~Font()
@@ -18,6 +18,25 @@ namespace crae
 			TTF_CloseFont(m_ttfFont);
 			m_ttfFont = nullptr;
 		}
+	}
+
+	bool Font::Create(std::string filename, ...)
+	{
+		// va_list - type to hold information about variable arguments 
+		va_list args;
+
+		// va_start - enables access to variadic function arguments 
+		va_start(args, filename);
+
+		// va_arg - accesses the next variadic function arguments 
+		int fontsize = va_arg(args, int);
+
+		// va_end - ends traversal of the variadic function arguments 
+		va_end(args);
+
+		// create texture (returns true/false if successful) 
+		Load(filename, fontsize);
+		return true;
 	}
 
 	void Font::Load(const std::string& filename, int fontSize)

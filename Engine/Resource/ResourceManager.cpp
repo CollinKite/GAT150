@@ -9,6 +9,6 @@ namespace crae
 
 	void ResourceManager::Shutdown()
 	{
-		//
+		m_resources.clear();
 	}
 }
