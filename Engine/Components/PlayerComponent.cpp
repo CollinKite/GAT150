@@ -36,8 +36,8 @@ void crae::PlayerComponent::Update()
 		component->ApplyForce(force);
 
 		//Gravitational Force
-		force = (Vector2{ 400,300 } - m_owner->m_transform.postition).Normalized() * 100.0f;
-		component->ApplyForce(force);
+		//force = (Vector2{ 400,300 } - m_owner->m_transform.postition).Normalized() * 100.0f;
+		//component->ApplyForce(force);
 	}
 
 	if (g_inputSystem.GetKeyState(key_space) == InputSystem::KeyState::Pressed)
@@ -52,11 +52,11 @@ void crae::PlayerComponent::Update()
 
 bool crae::PlayerComponent::Write(const rapidjson::Value& value) const
 {
-	return false;
+	return true;
 }
 
 bool crae::PlayerComponent::Read(const rapidjson::Value& value)
 {
-	READ_DATA(value, speed)
+	READ_DATA(value, speed);
 	return true;
 }

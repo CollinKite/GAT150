@@ -9,6 +9,8 @@
 #include "Framework/Actor.h"
 #include "Framework/Scene.h"
 #include "Framework/Game.h"
+#include "Framework/Singleton.h"
+#include "Framework/Factory.h"
 
 #include "Input/InputSystem.h"
 #include "Audio/AudioSystem.h"
@@ -24,6 +26,7 @@
 
 #include "Components/PlayerComponent.h"
 #include "Components/SpriteComponent.h"
+#include "Components/SpriteAnimComponent.h"
 #include "Components/AudioComponent.h"
 #include "Components/PhysicsComponent.h"
 #include "Components/ModelComponent.h"
@@ -42,4 +45,10 @@ namespace crae
 	extern Time g_time;
 	extern AudioSystem g_audioSystem;
 	extern ResourceManager g_resources;
+
+	class Engine : public Singleton<Engine>
+	{
+	public:
+		void Register();
+	};
 }

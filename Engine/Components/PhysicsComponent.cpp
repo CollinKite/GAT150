@@ -20,6 +20,8 @@ namespace crae
 	{
 
 		READ_DATA(value, damping);
+		READ_DATA(value, velocity);
+		READ_DATA(value, accleration);
 
 		return true;
 	}
