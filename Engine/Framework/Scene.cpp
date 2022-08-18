@@ -1,4 +1,6 @@
 #include "Scene.h"
+#include "Factory.h"
+#include "Core/Logger.h"
 #include <iostream>
 
 namespace crae
@@ -51,6 +53,35 @@ namespace crae
 	{
 		actor->m_scene = this;
 		m_actors.push_back(std::move(actor)); //Change ownership of unique ptr, only need to do for single ownership
+	}
+	bool Scene::Write(const rapidjson::Value& value) const
+	{
+		return true;
+	}
+	bool Scene::Read(const rapidjson::Value& value)
+	{
+		if (!value.HasMember("actors") || !value["actors"].IsArray())
+		{
+			LOG("Error reading file, not either an Actor or Array");
+			return false;
+		}
+
+		//read actors
+		for (auto& actorValue : value["actors"].GetArray())
+		{
+			std::string type;
+			READ_DATA(actorValue, type);
+
+			auto actor = Factory::Instance().Create<Actor>(type);
+			if (actor)
+			{
+				// read actor
+				actor->Read(actorValue);
+				Add(std::move(actor));
+			}
+		}
+
+		return true;
 	}
 }
 

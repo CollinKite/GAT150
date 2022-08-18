@@ -174,6 +174,7 @@
     <ClInclude Include="FrameWork\Game.h" />
     <ClInclude Include="FrameWork\GameObject.h" />
     <ClInclude Include="FrameWork\Scene.h" />
+    <ClInclude Include="Framework\Singleton.h" />
     <ClInclude Include="Input\InputSystem.h" />
     <ClInclude Include="Math\Color.h" />
     <ClInclude Include="Math\MathUtils.h" />
@@ -207,11 +208,13 @@
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="FrameWork\Actor.cpp" />
     <ClCompile Include="FrameWork\Scene.cpp" />
+    <ClCompile Include="Framework\Factory.h" />
     <ClCompile Include="Input\InputSystem.cpp" />
     <ClCompile Include="Math\Color.cpp" />
     <ClCompile Include="Math\MathUtils.cpp" />
     <ClCompile Include="Math\Matrix2x2.cpp" />
     <ClCompile Include="Math\Matrix3x3.cpp" />
+    <ClCompile Include="Math\Transform.cpp" />
     <ClCompile Include="Math\Vector2.cpp" />
     <ClCompile Include="Renderer\Font.cpp" />
     <ClCompile Include="Renderer\Model.cpp" />

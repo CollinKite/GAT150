@@ -6,10 +6,21 @@ namespace crae
 {
 	void PhysicsComponent::Update()
 	{
-		m_velocity += m_accleration * g_time.deltaTime;
-		m_owner->m_transform.postition += m_velocity * g_time.deltaTime;
-		m_velocity *= m_damping;
+		velocity += accleration * g_time.deltaTime;
+		m_owner->m_transform.postition += velocity * g_time.deltaTime;
+		velocity *= damping;
 
-		m_accleration = Vector2::zero;
+		accleration = Vector2::zero;
+	}
+	bool PhysicsComponent::Write(const rapidjson::Value& value) const
+	{
+		return true;
+	}
+	bool PhysicsComponent::Read(const rapidjson::Value& value)
+	{
+
+		READ_DATA(value, damping);
+
+		return true;
 	}
 }

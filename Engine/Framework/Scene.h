@@ -11,7 +11,7 @@ namespace crae
 	//class Renderer; //Fwd Declaration since we use a reference | we use these for optimization
 
 	class Game;
-	class Scene
+	class Scene : public ISerializable
 	{
 	public:
 		Scene() = default;
@@ -20,6 +20,8 @@ namespace crae
 
 		void Update();
 		void Draw(Renderer& renderer);
+		virtual bool Write(const rapidjson::Value& value) const override;
+		virtual bool Read(const rapidjson::Value& value) override;
 
 		void Add(std::unique_ptr<Actor> actor);
 
@@ -31,6 +33,7 @@ namespace crae
 	private:
 		Game* m_game;
 		std::list<std::unique_ptr<Actor>> m_actors;
+
 	};
 	template<typename T>
 	inline T* Scene::GetActor()

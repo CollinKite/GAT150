@@ -11,13 +11,19 @@ namespace crae
 
 		void Update() override;
 
-		void ApplyForce(const Vector2& force) { m_accleration += force; }
+		void ApplyForce(const Vector2& force) { accleration += force; }
 
 	public:
-		Vector2 m_velocity;
-		Vector2 m_accleration;
+		Vector2 velocity;
+		Vector2 accleration;
 
-		float m_damping = 0.9f;
+		float damping = 0.9f;
+
+
+		// Inherited via Component
+		virtual bool Write(const rapidjson::Value& value) const override;
+
+		virtual bool Read(const rapidjson::Value& value) override;
 
 	};
 }

@@ -8,38 +8,6 @@ int main()
 	crae::initializeMemory(); //Calls debug function for mem leak
 	crae::SetFilePath("../Assets");
 
-	rapidjson::Document document;
-	bool success = crae::json::Load("json.txt", document);
-	assert(success);
-
-	std::string str;
-	crae::json::Get(document, "string", str);
-	std::cout << str << std::endl;
-
-	bool b;
-	crae::json::Get(document, "boolean", b);
-	std::cout << b << std::endl;
-
-	int i1;
-	crae::json::Get(document, "integer1", i1);
-	std::cout << i1 << std::endl;
-
-	int i2;
-	crae::json::Get(document, "integer2", i2);
-	std::cout << i2 << std::endl;
-
-	float f;
-	crae::json::Get(document, "float", f);
-	std::cout << f << std::endl;
-
-	crae::Vector2 v2;
-	crae::json::Get(document, "vector2", v2);
-	std::cout << v2 << std::endl;
-
-	crae::Color color;
-	crae::json::Get(document, "color", color);
-	std::cout << color << std::endl;
-
 	//Create Systems
 	crae::g_renderer.Initialize();
 	crae::g_inputSystem.Initialize();
@@ -53,6 +21,11 @@ int main()
 
 	//scene
 	crae::Scene scene;
+
+	rapidjson::Document document;
+	bool success = crae::json::Load("Models/level.txt", document);
+
+	scene.Read(document);
 
 	bool quit = false;
 	while (!quit)

@@ -13,9 +13,14 @@ namespace crae
 	public:
 
 
-		// Inherited via RenderComponent
 		virtual void Update() override;
 		virtual void Draw(Renderer& renderer) override;
+
+		// Inherited via Component
+		virtual bool Write(const rapidjson::Value& value) const override;
+
+		virtual bool Read(const rapidjson::Value& value) override;
+
 
 	};
 }

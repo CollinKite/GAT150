@@ -3,16 +3,21 @@
 #include "Vector2.h"
 #include "Matrix3x3.h"
 #include "Math/MathUtils.h"
+#include "Serialization/Serializable.h"
 
 namespace crae
 {
-	struct Transform
+	struct Transform : public ISerializable
 	{
 		Vector2 postition; //x y
 		float rotation{0}; //angle
 		Vector2 scale{1,1};
 
 		Matrix3x3 matrix;
+		Transform() = default;
+
+		virtual bool Write(const rapidjson::Value& value) const override;
+		virtual bool Read(const rapidjson::Value& value) override;
 
 		void Update()
 		{
@@ -43,6 +48,11 @@ namespace crae
 
 			return { mxTranslation * mxRotation * mxScale };
 		}
+
+
+		// Inherited via ISerializable
+
+
 
 	};
 }

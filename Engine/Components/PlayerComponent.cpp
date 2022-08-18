@@ -49,3 +49,14 @@ void crae::PlayerComponent::Update()
 		}
 	}
 }
+
+bool crae::PlayerComponent::Write(const rapidjson::Value& value) const
+{
+	return false;
+}
+
+bool crae::PlayerComponent::Read(const rapidjson::Value& value)
+{
+	READ_DATA(value, speed)
+	return true;
+}

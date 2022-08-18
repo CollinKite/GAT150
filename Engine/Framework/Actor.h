@@ -1,13 +1,14 @@
 #pragma once
 #include "GameObject.h"
 #include "Component.h"
+
 #include <vector>
 
 namespace crae
 {
 	class Scene; //fwd Delcaration
 	class Renderer;
-	class Actor : public GameObject
+	class Actor : public GameObject, public ISerializable
 	{
 	public:
 		Actor() = default;
@@ -15,6 +16,8 @@ namespace crae
 
 		virtual void Update() override; //Overide method from Game Object
 		virtual void Draw(Renderer& renderer);
+		virtual bool Write(const rapidjson::Value& value) const override;
+		virtual bool Read(const rapidjson::Value& value) override;
 
 		void AddChild(std::unique_ptr<Actor> child);
 
@@ -25,12 +28,17 @@ namespace crae
 
 		virtual void OnCollision(Actor* other) {}
 		float GetRadius() { return 0; }// m_model.GetRadius(); }
-		std::string& GetTag() { return m_tag; }
+		const std::string& GetTag() { return tag; }
+		void SetTag(const std::string& tag) { this->tag = tag; }
+
+		const std::string& GetName() { return name; }
+		void SetName(const std::string& name) { this->name = name; }
 		Transform m_transform;
 
 		friend class Scene;
 	protected:
-		std::string m_tag; //enemy & player
+		std::string name;
+		std::string tag; //enemy & player
 		bool m_destroy = false;
 
 		

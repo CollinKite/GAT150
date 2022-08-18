@@ -2,6 +2,8 @@
 #include "rapidjson/document.h"
 #include <string>
 
+#define READ_DATA(value, data) crae::json::Get(value, #data, data);
+
 namespace crae
 {
 	struct Vector2;
