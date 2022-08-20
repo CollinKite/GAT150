@@ -8,7 +8,7 @@ namespace crae
 	{
 	public:
 		PhysicsComponent() = default;
-
+			
 		void Update() override;
 
 		void ApplyForce(const Vector2& force) { accleration += force; }

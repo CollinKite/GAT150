@@ -1,6 +1,7 @@
 #include "Logger.h"
 #include <iostream>
 #include <cstdarg>
+#include <stdio.h>
 
 namespace crae
 {
@@ -13,10 +14,9 @@ namespace crae
 
 		char str[1024];
 		vsprintf_s(str, 1024, format, args);
-
-		std::cout << str << std::endl;
-
+//		printf("%s", str);
 		va_end(args);
 
+		//std::cout << str << std::endl;
 	}
 }

@@ -9,7 +9,7 @@ namespace crae
 {
 	struct Transform : public ISerializable
 	{
-		Vector2 postition; //x y
+		Vector2 position; //x y
 		float rotation{0}; //angle
 		Vector2 scale{1,1};
 
@@ -23,7 +23,7 @@ namespace crae
 		{
 			Matrix3x3 mxScale = Matrix3x3::CreateScale(scale);
 			Matrix3x3 mxRotation = Matrix3x3::CreateRoation(math::DegToRad(rotation));
-			Matrix3x3 mxTranslation = Matrix3x3::CreateTranslation(postition);
+			Matrix3x3 mxTranslation = Matrix3x3::CreateTranslation(position);
 
 			matrix = { mxTranslation * mxRotation * mxScale }; //ORDER MATTERS (Right to Left is order)
 
@@ -33,7 +33,7 @@ namespace crae
 		{
 			Matrix3x3 mxScale = Matrix3x3::CreateScale(scale);
 			Matrix3x3 mxRotation = Matrix3x3::CreateRoation(math::DegToRad(rotation));
-			Matrix3x3 mxTranslation = Matrix3x3::CreateTranslation(postition);
+			Matrix3x3 mxTranslation = Matrix3x3::CreateTranslation(position);
 
 			matrix = { mxTranslation * mxRotation * mxScale }; //ORDER MATTERS (Right to Left is order)
 			matrix = parent * matrix;
@@ -44,7 +44,7 @@ namespace crae
 		{
 			Matrix3x3 mxScale = Matrix3x3::CreateScale(scale);
 			Matrix3x3 mxRotation = Matrix3x3::CreateRoation(math::DegToRad(rotation));
-			Matrix3x3 mxTranslation = Matrix3x3::CreateTranslation(postition);
+			Matrix3x3 mxTranslation = Matrix3x3::CreateTranslation(position);
 
 			return { mxTranslation * mxRotation * mxScale };
 		}

@@ -26,7 +26,7 @@
             },
             {
                "type":"SpriteAnimComponent",
-               "texture_name":"Textures/gothic-hero-run.png",
+               "texture_name":"gothic-hero-run.png",
                "fps":12.0,
                "num_columns":12,
                "num_rows":1,

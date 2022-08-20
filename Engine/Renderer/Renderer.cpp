@@ -105,7 +105,7 @@ namespace crae
 
 		Vector2 origin = size * registration;
 
-		Vector2 tposition = transform.postition - origin;
+		Vector2 tposition = transform.position - origin;
 
 		SDL_Rect dest;
 		// !! make sure to cast to int to prevent compiler warnings 
@@ -125,7 +125,7 @@ namespace crae
 
 		Vector2 origin = size * registration;
 
-		Vector2 tposition = transform.postition - origin;
+		Vector2 tposition = transform.position - origin;
 
 		SDL_Rect dest{};
 		// !! make sure to cast to int to prevent compiler warnings 

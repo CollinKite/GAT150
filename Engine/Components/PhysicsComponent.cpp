@@ -7,7 +7,7 @@ namespace crae
 	void PhysicsComponent::Update()
 	{
 		velocity += accleration * g_time.deltaTime;
-		m_owner->m_transform.postition += velocity * g_time.deltaTime;
+		m_owner->m_transform.position += velocity * g_time.deltaTime;
 		velocity *= damping;
 
 		accleration = Vector2::zero;

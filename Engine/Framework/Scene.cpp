@@ -29,7 +29,7 @@ namespace crae
 			{
 				if (iter1 == iter2) continue;
 				float radius = (*iter1)->GetRadius() + (*iter2)->GetRadius();
-				float distance = (*iter1)->m_transform.postition.Distance((*iter2)->m_transform.postition);
+				float distance = (*iter1)->m_transform.position.Distance((*iter2)->m_transform.position);
 
 				if (distance < radius)
 				{

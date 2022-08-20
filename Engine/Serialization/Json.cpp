@@ -1,20 +1,23 @@
 #include "Json.h"
 #include "rapidjson/istreamwrapper.h"
-#include"Core/Logger.h"
-#include"Math/Vector2.h"
-#include"Math/Color.h"
-#include"Math/Rect.h"
-
+#include "Core/Logger.h"
+#include "Math/Vector2.h"
+#include "Math/Color.h"
+#include "Math/Rect.h"
 
 #include <fstream>
 namespace crae::json
 {
 	bool Load(const std::string& filename, rapidjson::Document& document)
 	{
+		// !! create a std::ifstream object called stream 
+		// !! check if it is open, if not use LOG to print error and return false 
+		// !! https://riptutorial.com/cplusplus/example/1625/opening-a-file 
 		std::ifstream stream(filename);
-		if (stream.is_open() == false)
+
+		if (!stream.is_open())
 		{
-			LOG("Error Opening file %s.", filename.c_str());
+			LOG("json file cannot be read %s", filename.c_str());
 			return false;
 		}
 
@@ -60,10 +63,10 @@ namespace crae::json
 		return true;
 	}
 
-
 	bool Get(const rapidjson::Value& value, const std::string& name, bool& data)
 	{
-		if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsBool() == false)
+		if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsBool() ==
+			false)
 		{
 			LOG("error reading json data %s", name.c_str());
 			return false;
@@ -92,7 +95,35 @@ namespace crae::json
 	bool Get(const rapidjson::Value& value, const std::string& name, Vector2& data)
 	{
 		// check if 'name' member exists and is an array with 2 elements 
-		if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsArray()== false || value[name.c_str()].Size() != 2)
+		if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsArray() == false || value[name.c_str()].Size() != 2)
+		{
+			LOG("error reading json data %s", name.c_str());
+			return false;
+
+		}
+
+		// create json array object 
+		auto& array = value[name.c_str()];
+		// get array values 
+		for (rapidjson::SizeType i = 0; i < array.Size(); i++)
+		{
+			if (!array[i].IsNumber())
+			{
+
+				LOG("error reading json data (not a float) %s\n", name.c_str());
+				return false;
+			}
+
+			data[i] = array[i].GetFloat();
+		}
+
+		return true;
+	}
+
+	bool Get(const rapidjson::Value& value, const std::string& name, Color& data)
+	{
+		// check if 'name' member exists and is an array with 2 elements 
+		if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsArray() == false || value[name.c_str()].Size() != 4)
 		{
 			LOG("error reading json data %s", name.c_str());
 			return false;
@@ -117,33 +148,6 @@ namespace crae::json
 		return true;
 	}
 
-	bool Get(const rapidjson::Value& value, const std::string& name, Color& data)
-	{
-		if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsArray() == false || value[name.c_str()].Size() != 4)
-		{
-			LOG("error reading json data %s", name.c_str());
-			return false;
-
-		}
-
-		// create json array object 
-		auto& array = value[name.c_str()];
-		// get array values 
-		for (rapidjson::SizeType i = 0; i < array.Size(); i++)
-		{
-			if (!array[i].IsNumber())
-			{
-
-				LOG("error reading json data (not a float) %s", name.c_str());
-				return false;
-			}
-
-			data[i] = array[i].GetInt();
-		}
-
-		return true;
-		
-	}
 	bool Get(const rapidjson::Value& value, const std::string& name, Rect& data)
 	{
 		if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsArray() == false || value[name.c_str()].Size() != 4)
@@ -156,12 +160,12 @@ namespace crae::json
 		// create json array object 
 		auto& array = value[name.c_str()];
 		// get array values 
-		data.x = array[0].GetInt();
-		data.y = array[1].GetInt();
-		data.w = array[2].GetInt();
-		data.h = array[3].GetInt();
-		return true	;
+
+		data.x = array[0].GetFloat();
+		data.y = array[1].GetFloat();
+		data.w = array[2].GetFloat();
+		data.h = array[3].GetFloat();
+
+		return true;
 	}
 }
-
-

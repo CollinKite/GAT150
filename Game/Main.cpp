@@ -17,7 +17,12 @@ int main()
 	crae::g_renderer.CreateWindow("Game Engine", 800, 600);
 	crae::g_renderer.SetClearColor(crae::Color{ 0,0,0,255 });
 
+	crae::Engine::Instance().Register();
+
+
 	crae::g_audioSystem.AddAudio("laser", "Audio/laser.wav");
+
+
 
 	//scene
 	crae::Scene scene;
