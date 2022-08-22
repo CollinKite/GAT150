@@ -7,18 +7,19 @@
 
 namespace crae
 {
-	//class Actor; //Forward declaration since we use a Actor ptr, tells complier to find it later | if it wasn't a ptr we would include Actor.h
-	//class Renderer; //Fwd Declaration since we use a reference | we use these for optimization
+	class Actor; //Forward declaration since we use a Actor ptr, tells complier to find it later | if it wasn't a ptr we would include Actor.h
+	class Renderer; //Fwd Declaration since we use a reference | we use these for optimization
 
 	class Game;
-	class Scene : public ISerializable
+	class Scene : public GameObject, public ISerializable
 	{
 	public:
 		Scene() = default;
 		Scene(Game* game) : m_game{ game } {};
 		~Scene() = default;
 
-		void Update();
+		void Initialize() override;
+		void Update() override;
 		void Draw(Renderer& renderer);
 		virtual bool Write(const rapidjson::Value& value) const override;
 		virtual bool Read(const rapidjson::Value& value) override;
@@ -31,7 +32,7 @@ namespace crae
 		Game* GetGame() { return m_game; }
 
 	private:
-		Game* m_game;
+		Game* m_game = nullptr;
 		std::list<std::unique_ptr<Actor>> m_actors;
 
 	};

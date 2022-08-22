@@ -24,6 +24,8 @@
 #include "Math/Random.h"
 #include "Math/MathUtils.h"
 
+#include "Physics/PhysicsSystem.h"
+
 #include "Components/PlayerComponent.h"
 #include "Components/SpriteComponent.h"
 #include "Components/SpriteAnimComponent.h"
@@ -45,6 +47,7 @@ namespace crae
 	extern Time g_time;
 	extern AudioSystem g_audioSystem;
 	extern ResourceManager g_resources;
+	extern PhysicsSystem g_physicsSystem;
 
 	class Engine : public Singleton<Engine>
 	{

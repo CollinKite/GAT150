@@ -18,6 +18,7 @@ namespace crae
 		virtual void Draw(Renderer& renderer);
 		virtual bool Write(const rapidjson::Value& value) const override;
 		virtual bool Read(const rapidjson::Value& value) override;
+		virtual void Initialize() override;
 
 		void AddChild(std::unique_ptr<Actor> child);
 
@@ -53,6 +54,8 @@ namespace crae
 
 		std::vector<std::unique_ptr<Component>> m_components;
 		std::vector<std::unique_ptr<Actor>> m_children;
+
+		// Inherited via GameObject
 	};
 
 
