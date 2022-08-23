@@ -2,6 +2,27 @@
    "actors":[
       {
          "type":"Actor",
+         "name":"Background",
+         "transform":{
+            "position":[
+               400,
+               300
+            ],
+            "scale":[
+               1,
+               1
+            ],
+            "rotation":0
+         },
+         "components":[
+            {
+               "type":"SpriteComponent",
+               "texture_name":"Textures/background.png"
+            }
+         ]
+      },
+      {
+         "type":"Actor",
          "name":"Player",
          "tag":"Player",
          "transform":{
@@ -18,11 +39,20 @@
          "components":[
             {
                "type":"PlayerComponent",
-               "speed":200
+               "speed":30
             },
             {
-               "type":"PhysicsComponent",
-               "damping":0.99
+               "type":"RBPhysicsComponent",
+               "damping":0.99,
+               "data.gravity_scale":1,
+               "data.constrain_angle":true
+            },
+            {
+               "type":"CollisionComponent",
+               "data.size":[
+                  48,
+                  48
+               ]
             },
             {
                "type":"SpriteAnimComponent",
@@ -32,6 +62,74 @@
                "num_rows":1,
                "start_frame":1,
                "end_frame":12
+            }
+         ]
+      },
+       {
+         "type":"Actor",
+         "name":"Coins",
+         "tag":"coin",
+         "transform":{
+            "position":[
+               500,
+               300
+            ],
+            "scale":[
+               2,
+               2
+            ],
+            "rotation":0
+         },
+         "components":[
+            {
+               "type":"RBPhysicsComponent",
+               "damping":0.99,
+               "data.gravity_scale":1,
+               "data.constrain_angle":true
+            },
+            {
+               "type":"CollisionComponent",
+               "data.size":[
+                  48,
+                  48
+               ]
+            },
+            {
+               "type":"SpriteAnimComponent",
+               "texture_name":"Textures/coin.png",
+               "fps":12.0,
+               "num_columns":8,
+               "num_rows":1,
+               "start_frame":1,
+               "end_frame":8
+            }
+         ]
+      },
+      {
+         "type":"Actor",
+         "name":"Floor",
+         "transform":{
+            "position":[
+               400,
+               520
+            ],
+            "scale":[
+               1,
+               1
+            ],
+            "rotation":0
+         },
+         "components":[
+            {
+               "type":"RBPhysicsComponent",
+               "data.is_dynamic":false
+            },
+            {
+               "type":"CollisionComponent",
+               "data.size":[
+                  800,
+                  24
+               ]
             }
          ]
       }

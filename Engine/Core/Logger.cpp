@@ -17,6 +17,6 @@ namespace crae
 //		printf("%s", str);
 		va_end(args);
 
-		//std::cout << str << std::endl;
+		std::cout << str << std::endl;
 	}
 }

@@ -13,39 +13,37 @@ void crae::PlayerComponent::Update()
 
 	if (crae::g_inputSystem.GetKeyState(key_left))
 	{
-		m_owner->m_transform.rotation -= 180 * g_time.deltaTime;
+		//rotate m_owner->m_transform.rotation -= 180 * g_time.deltaTime;
+		direction = Vector2::left;
+
 	}
 
 	if (crae::g_inputSystem.GetKeyState(key_right))
 	{
-		m_owner->m_transform.rotation += 180 * g_time.deltaTime;
+		//m_owner->m_transform.rotation += 180 * g_time.deltaTime;
+		direction = Vector2::right;
+
 	}
 
 	float thrust = 0;
 	if (crae::g_inputSystem.GetKeyState(key_up))
 	{
-		thrust = 5000;
+		thrust = speed;
 	}
 	
 	auto component = m_owner->GetComponent<PhysicsComponent>();
-
 	if (component)
 	{
-		//thrust force
-		Vector2 force = Vector2::Rotate({ 1,0 }, math::DegToRad(m_owner->m_transform.rotation)) * thrust;
-		component->ApplyForce(force);
-
-		//Gravitational Force
-		//force = (Vector2{ 400,300 } - m_owner->m_transform.postition).Normalized() * 100.0f;
-		//component->ApplyForce(force);
+		component->ApplyForce(direction * speed);
 	}
 
+	//jump
 	if (g_inputSystem.GetKeyState(key_space) == InputSystem::KeyState::Pressed)
 	{
-		auto component = m_owner->GetComponent<AudioComponent>();
+		auto component = m_owner->GetComponent<PhysicsComponent>();
 		if (component)
 		{
-			component->Play();
+			component->ApplyForce(Vector2::up * speed * 10);
 		}
 	}
 }

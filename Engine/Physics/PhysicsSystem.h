@@ -26,6 +26,7 @@ namespace crae
 			float restitution = 0.3f;
 			bool is_trigger = false;
 		};
+
 		PhysicsSystem() = default;
 		~PhysicsSystem() = default;
 
@@ -34,6 +35,7 @@ namespace crae
 
 		void Update();
 		
+		void SetCollisionBox(b2Body* body, const CollisionData& data, class Actor* actor = nullptr);
 		b2Body* CreateBody(const Vector2& position, float angle, const RigidBodyData& data);
 		void DestroyBody(b2Body* body);
 

@@ -8,7 +8,6 @@ namespace crae
 	{
 	public:
 		PhysicsComponent() = default;
-		~PhysicsComponent();
 			
 		void Update() override;
 

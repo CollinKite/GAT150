@@ -1,11 +1,13 @@
 #pragma once
 #include "PhysicsComponent.h"
 #include "Physics/PhysicsSystem.h"
+#include "Engine.h"
 
 namespace crae
 {
 	class RBPhysicsComponent : public PhysicsComponent
 	{
+	public:
 		RBPhysicsComponent() = default;
 		~RBPhysicsComponent();
 
@@ -16,6 +18,8 @@ namespace crae
 		virtual bool Write(const rapidjson::Value& value) const override;
 
 		virtual bool Read(const rapidjson::Value& value) override;
+
+		friend class CollisionComponent;
 
 	private:
 		PhysicsSystem::RigidBodyData data;

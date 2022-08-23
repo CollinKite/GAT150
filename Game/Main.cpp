@@ -30,6 +30,7 @@ int main()
 
 	rapidjson::Document document;
 	bool success = crae::json::Load("Models/level.txt", document);
+	assert(success);
 
 	scene.Read(document);
 	scene.Initialize();
@@ -50,7 +51,11 @@ int main()
 		scene.Draw(crae::g_renderer);
 		crae::g_renderer.EndFrame();
 	}
-	crae::g_renderer.Shutdown();
+
+	crae::g_physicsSystem.Shutdown();
+	crae::g_resources.Shutdown();
+	crae::g_inputSystem.Shutdown();
 	crae::g_audioSystem.Shutdown();
+	crae::g_renderer.Shutdown();
 
 }

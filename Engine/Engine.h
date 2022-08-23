@@ -31,8 +31,9 @@
 #include "Components/SpriteAnimComponent.h"
 #include "Components/AudioComponent.h"
 #include "Components/PhysicsComponent.h"
+#include "Components/RBPhysicsComponent.h"
+#include "Components/CollisionComponent.h"
 #include "Components/ModelComponent.h"
-
 
 //#include <memory>
 //#include <list>

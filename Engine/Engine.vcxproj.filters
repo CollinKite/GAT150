@@ -134,6 +134,9 @@
     <ClCompile Include="Components\RBPhysicsComponent.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Components\CollisionComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\MathUtils.h">
@@ -256,22 +259,11 @@
     <ClInclude Include="Components\RBPhysicsComponent.h">
       <Filter>Source Files\Components</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\Build\Assets\Models\bullet.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="..\Build\Assets\Models\Enemy.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="..\Build\Assets\Models\player1.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="..\Build\Assets\Models\player2.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="..\Build\Assets\Models\level.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
+    <ClInclude Include="Physics\Collision.h">
+      <Filter>Source Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CollisionComponent.h">
+      <Filter>Source Files\Components</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
