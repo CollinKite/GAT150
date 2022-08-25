@@ -75,7 +75,10 @@ namespace crae
 		READ_DATA(value, tag);
 		READ_DATA(value, name);
 
-		m_transform.Read(value["transform"]);
+		//if (value.HasMember("transform"))
+		//{
+			m_transform.Read(value["transform"]);
+		//}
 
 		if (value.HasMember("components") && value["components"].IsArray())
 		{

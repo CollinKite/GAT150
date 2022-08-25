@@ -21,10 +21,12 @@ namespace crae
 
     void CollisionComponent::OnCollisionEnter(Actor* other)
     {
+        if(m_enterFunction) m_enterFunction(other);
     }
 
     void CollisionComponent::OnCollisionExit(Actor* other)
     {
+        if (m_exitFunction) m_exitFunction(other);
     }
 
     bool CollisionComponent::Write(const rapidjson::Value& value) const

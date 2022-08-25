@@ -58,6 +58,10 @@ namespace crae
 		actor->m_scene = this;
 		m_actors.push_back(std::move(actor)); //Change ownership of unique ptr, only need to do for single ownership
 	}
+	void Scene::RemoveAll()
+	{
+		m_actors.clear();
+	}
 	bool Scene::Write(const rapidjson::Value& value) const
 	{
 		return true;

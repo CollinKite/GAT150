@@ -21,7 +21,7 @@ int main()
 	crae::Engine::Instance().Register();
 
 
-	crae::g_audioSystem.AddAudio("laser", "Audio/laser.wav");
+	/*crae::g_audioSystem.AddAudio("laser", "Audio/laser.wav");*/
 
 
 
@@ -52,7 +52,7 @@ int main()
 		crae::g_renderer.EndFrame();
 	}
 
-	crae::g_physicsSystem.Shutdown();
+	//crae::g_physicsSystem.Shutdown();
 	crae::g_resources.Shutdown();
 	crae::g_inputSystem.Shutdown();
 	crae::g_audioSystem.Shutdown();

@@ -1,31 +1,33 @@
 #pragma once
 
 #include "Framework/Component.h"
+#include "Audio/AudioChannel.h"
 
 namespace crae
 {
 	class AudioComponent : public Component
 	{
 	public:
-		std::string m_soundName;
-		bool m_playOnAwake = false;
-		float m_volume = 1.0f; //0-1
-		float m_pitch = 1.0f;
-		bool m_loop = false;
-	public:
 		AudioComponent() = default;
+		~AudioComponent(); // !! this is added (stop play when destroyed) 
 
+		void Initialize() override; // !! this is added (create definition) 
 		void Update() override;
 
-		void Play();
-
-		void Stop();
-
-
-		// Inherited via Component
 		virtual bool Write(const rapidjson::Value& value) const override;
-
 		virtual bool Read(const rapidjson::Value& value) override;
 
+		void Play();
+		void Stop();
+
+	public:
+		AudioChannel m_channel;
+
+		// !! your names do not have to be the same 
+		std::string sound_name;
+		float volume = 1;
+		float pitch = 1;
+		bool play_on_start = false;
+		bool loop = false;
 	};
 }

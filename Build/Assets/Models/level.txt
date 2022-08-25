@@ -62,6 +62,13 @@
                "num_rows":1,
                "start_frame":1,
                "end_frame":12
+            },
+            { 
+               "type":"AudioComponent", 
+               "sound_name":"Audio/laser.wav", 
+               "play_on_start":true,
+               "loop":true,
+               "pitch":2
             }
          ]
       },

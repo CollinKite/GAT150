@@ -3,6 +3,16 @@
 #include "Components/PhysicsComponent.h"
 #include <iostream>
 
+void crae::PlayerComponent::Initialize()
+{
+	auto component = m_owner->GetComponent<CollisionComponent>();
+	if (component)
+	{
+		component->SetCollisionEnter(std::bind(&PlayerComponent::OnCollisionEnter, this, std::placeholders::_1));
+		component->SetCollisionExit(std::bind(&PlayerComponent::OnCollisionExit, this, std::placeholders::_1));
+	}
+}
+
 void crae::PlayerComponent::Update()
 {
 	//std::cout << "player\n";
@@ -57,4 +67,14 @@ bool crae::PlayerComponent::Read(const rapidjson::Value& value)
 {
 	READ_DATA(value, speed);
 	return true;
+}
+
+void crae::PlayerComponent::OnCollisionEnter(Actor* other)
+{
+	std::cout << "player enter\n";
+}
+
+void crae::PlayerComponent::OnCollisionExit(Actor* other)
+{
+	std::cout << "player exit\n";
 }

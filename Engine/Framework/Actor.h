@@ -3,6 +3,7 @@
 #include "Component.h"
 
 #include <vector>
+#include <memory>
 
 namespace crae
 {
@@ -13,6 +14,8 @@ namespace crae
 	public:
 		Actor() = default;
 		Actor(const Transform& transform) : m_transform{ transform } {}
+
+		std::unique_ptr<GameObject> Clone() { return std::make_unique<Actor>(); }
 
 		virtual void Update() override; //Overide method from Game Object
 		virtual void Draw(Renderer& renderer);
@@ -45,9 +48,6 @@ namespace crae
 		
 
 		bool m_loselife = false;
-		//physics
-		Vector2 m_velocity;
-		float m_damping = 1;
 
 		Scene* m_scene = nullptr;
 		Actor* m_parent = nullptr;

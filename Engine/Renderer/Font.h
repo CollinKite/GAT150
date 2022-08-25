@@ -4,6 +4,7 @@
 #include <string>
 // !! forward declare the _TTF_Font struct 
 struct _TTF_Font;
+struct SDL_Surface;
 
 namespace crae
 {

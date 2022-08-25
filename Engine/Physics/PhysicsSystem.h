@@ -2,6 +2,7 @@
 #include "b2_world.h" 
 #include "box2d.h" 
 #include "Math/Vector2.h"
+#include "ContactListener.h"
 #include <memory> 
 
 #define VECTOR2_TO_B2VEC2(vec) (*(b2Vec2*)(&vec))
@@ -46,5 +47,6 @@ namespace crae
 		static const float pixelsPerUnit;
 		
 		std::unique_ptr<b2World> m_world;
+		std::unique_ptr<ContactListener> m_contactListener;
 	};
 }

@@ -19,6 +19,7 @@ namespace crae
     template <typename T>
     class Creator : public CreatorBase
     {
+    public:
         std::unique_ptr<GameObject> Create() override
         {
             return std::make_unique<T>();
@@ -26,11 +27,29 @@ namespace crae
 
     };
 
+    template <typename T>
+    class PrefabCreator : public CreatorBase
+    {
+    public:
+        PrefabCreator(std::unique_ptr<T> instance) : m_instance{ std::move(instance) } {};
+
+        std::unique_ptr<GameObject> Create() override
+        {
+            return std::make_unique<T>();
+        }
+
+    private:
+        std::unique_ptr<T> m_instance;
+    };
+
     class Factory : public Singleton<Factory>
     {
     public:
         template <typename T>
         void Register(const std::string& key);
+
+        template <typename T>
+        void RegisterPrefab(const std::string& key, std::unique_ptr<T> instance);
 
         template <typename T>
         std::unique_ptr<T> Create(const std::string& key);
@@ -46,6 +65,12 @@ namespace crae
     }
 
     template<typename T>
+    inline void Factory::RegisterPrefab(const std::string& key, std::unique_ptr<T> instance)
+    {
+        m_registry[key] = std::make_unique<PrefabCreator<T>>(std::move(instance));
+    }
+
+    template<typename T>
     inline std::unique_ptr<T> Factory::Create(const std::string& key)
     {
         auto iter = m_registry.find(key);
@@ -57,4 +82,6 @@ namespace crae
 
         return std::unique_ptr<T>();
     }
+
+
 }
