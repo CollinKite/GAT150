@@ -150,6 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CollinGame.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -160,9 +161,14 @@
   <ItemGroup>
     <Text Include="..\Build\Assets\Models\bullet.txt" />
     <Text Include="..\Build\Assets\Models\Enemy.txt" />
-    <Text Include="..\Build\Assets\Models\level.txt" />
     <Text Include="..\Build\Assets\Models\player1.txt" />
     <Text Include="..\Build\Assets\Models\player2.txt" />
+    <Text Include="..\Build\Assets\Scenes\Level.txt" />
+    <Text Include="..\Build\Assets\Scenes\Prefabs.txt" />
+    <Text Include="..\Build\Assets\Scenes\Tilemap.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CollinGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

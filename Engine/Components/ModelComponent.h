@@ -11,6 +11,8 @@ namespace crae
 		std::shared_ptr<Model> m_model;
 
 	public:
+		CLASS_DECLARATION(ModelComponent)
+
 
 
 		virtual void Update() override;

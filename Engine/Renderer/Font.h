@@ -1,26 +1,33 @@
-#pragma once
-// !! add necessary includes
+#pragma once 
 #include "Resource/Resource.h"
+
 #include <string>
+
 // !! forward declare the _TTF_Font struct 
+
 struct _TTF_Font;
 struct SDL_Surface;
 
 namespace crae
 {
-	class Font : public Resource
-	{
-	public:
-		Font() = default;
-		Font(const std::string& filename, void* data = nullptr);
-		~Font();
-		bool Create(std::string filename, ...) override;
-		void Load(const std::string& filename, int fontSize);
-		auto getFont() { return m_ttfFont; }
+    struct Color;
 
-		friend class Text;
+    class Font : public Resource
+    {
+    public:
+        Font() = default;
+        Font(const std::string& filename, int fontSize);
+        ~Font();
 
-	private:
-		_TTF_Font* m_ttfFont = nullptr;
-	};
+        bool Create(std::string name, ...) override;
+
+        bool Load(const std::string& filename, int fontSize);
+
+        SDL_Surface* CreateSurface(const std::string& text, const Color& color);
+
+        friend class Text;
+
+    private:
+        _TTF_Font* m_ttfFont = nullptr;
+    };
 }

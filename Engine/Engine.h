@@ -15,6 +15,7 @@
 #include "Input/InputSystem.h"
 #include "Audio/AudioSystem.h"
 #include "Resource/ResourceManager.h"
+#include "Core/Logger.h"
 
 #include "Renderer/Renderer.h"
 #include "Renderer/Font.h"
@@ -34,6 +35,8 @@
 #include "Components/RBPhysicsComponent.h"
 #include "Components/CollisionComponent.h"
 #include "Components/ModelComponent.h"
+#include "Components/TextComponent.h"
+#include "Components/TilemapComponent.h"
 
 //#include <memory>
 //#include <list>

@@ -71,6 +71,10 @@ bool crae::PlayerComponent::Read(const rapidjson::Value& value)
 
 void crae::PlayerComponent::OnCollisionEnter(Actor* other)
 {
+	if (other->GetName() == "Coin")
+	{
+		other->SetDestroy();
+	}
 	std::cout << "player enter\n";
 }
 

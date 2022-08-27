@@ -18,6 +18,9 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CollinGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Build\Assets\Models\player2.txt">
@@ -29,11 +32,22 @@
     <Text Include="..\Build\Assets\Models\Enemy.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="..\Build\Assets\Models\level.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
     <Text Include="..\Build\Assets\Models\player1.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="..\Build\Assets\Scenes\Level.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="..\Build\Assets\Scenes\Prefabs.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="..\Build\Assets\Scenes\Tilemap.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CollinGame.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

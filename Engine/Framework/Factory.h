@@ -1,6 +1,6 @@
 #pragma once
 #include "Singleton.h"
-
+#include "Core/Logger.h"
 #include <map>
 #include <memory>
 #include <string>
@@ -13,7 +13,9 @@ namespace crae
     class CreatorBase
     {
     public:
-        virtual std::unique_ptr<GameObject> Create() = 0;
+       virtual ~CreatorBase() = default;
+
+       virtual std::unique_ptr<GameObject> Create() = 0;
     };
 
     template <typename T>
@@ -26,16 +28,17 @@ namespace crae
         }
 
     };
-
+    
     template <typename T>
     class PrefabCreator : public CreatorBase
     {
     public:
+        ~PrefabCreator() = default;
         PrefabCreator(std::unique_ptr<T> instance) : m_instance{ std::move(instance) } {};
 
         std::unique_ptr<GameObject> Create() override
         {
-            return std::make_unique<T>();
+            return m_instance->Clone();
         }
 
     private:
@@ -45,6 +48,7 @@ namespace crae
     class Factory : public Singleton<Factory>
     {
     public:
+        void Shutdown() { m_registry.clear(); }
         template <typename T>
         void Register(const std::string& key);
 
@@ -79,6 +83,7 @@ namespace crae
         {
             return std::unique_ptr<T>(dynamic_cast<T*>(iter->second->Create().release()));
         }
+        LOG("Couldn't Get %s", key.c_str());
 
         return std::unique_ptr<T>();
     }

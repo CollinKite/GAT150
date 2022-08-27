@@ -24,6 +24,8 @@ namespace crae
 
 	public:
 
+		CLASS_DECLARATION(SpriteAnimComponent)
+
 
 		// Inherited via RenderComponent
 		virtual void Update() override;

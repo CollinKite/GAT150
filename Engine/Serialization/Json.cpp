@@ -154,7 +154,6 @@ namespace crae::json
 		{
 			LOG("error reading json data %s", name.c_str());
 			return false;
-
 		}
 
 		// create json array object 
@@ -165,6 +164,69 @@ namespace crae::json
 		data.y = array[1].GetFloat();
 		data.w = array[2].GetFloat();
 		data.h = array[3].GetFloat();
+
+		return true;
+	}
+
+	//after
+	bool Get(const rapidjson::Value& value, const std::string& name, std::vector<std::string>& data)
+
+	{
+
+		if (!value.HasMember(name.c_str()))
+		{
+			return false;
+		}
+
+		if (!value[name.c_str()].IsArray())
+		{
+			LOG("error reading json data %s", name.c_str());
+			return false;
+
+		}
+
+		// create json array object 
+		auto& array = value[name.c_str()];
+		// get array values 
+		for (rapidjson::SizeType i = 0; i < array.Size(); i++)
+		{
+			if (!array[i].IsString())
+			{
+				LOG("error reading json data (not a string) %s", name.c_str());
+				return false;
+			}
+			data.push_back(array[i].GetString());
+		}
+
+		return true;
+	}
+
+	bool Get(const rapidjson::Value& value, const std::string& name, std::vector<int>& data)
+	{
+		if (!value.HasMember(name.c_str()))
+		{
+			return false;
+		}
+
+		if (!value[name.c_str()].IsArray())
+		{
+			LOG("error reading json data %s", name.c_str());
+			return false;
+
+		}
+
+		// create json array object 
+		auto& array = value[name.c_str()];
+		// get array values 
+		for (rapidjson::SizeType i = 0; i < array.Size(); i++)
+		{
+			if (!array[i].IsInt())
+			{
+				LOG("error reading json data (not an int) %s", name.c_str());
+				return false;
+			}
+			data.push_back(array[i].GetInt());
+		}
 
 		return true;
 	}

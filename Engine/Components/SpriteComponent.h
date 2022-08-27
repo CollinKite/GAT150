@@ -13,6 +13,8 @@ namespace crae
 		std::shared_ptr<Texture> m_texture;
 
 	public:
+		CLASS_DECLARATION(SpriteComponent)
+
 
 
 		// Inherited via RenderComponent

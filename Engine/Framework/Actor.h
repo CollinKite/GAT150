@@ -13,9 +13,10 @@ namespace crae
 	{
 	public:
 		Actor() = default;
+		Actor(const Actor& other); //Copy
 		Actor(const Transform& transform) : m_transform{ transform } {}
 
-		std::unique_ptr<GameObject> Clone() { return std::make_unique<Actor>(); }
+		CLASS_DECLARATION(Actor)
 
 		virtual void Update() override; //Overide method from Game Object
 		virtual void Draw(Renderer& renderer);
@@ -34,13 +35,18 @@ namespace crae
 		float GetRadius() { return 0; }// m_model.GetRadius(); }
 		const std::string& GetTag() { return tag; }
 		void SetTag(const std::string& tag) { this->tag = tag; }
-
+		void SetDestroy() { m_destroy = true; }
 		const std::string& GetName() { return name; }
 		void SetName(const std::string& name) { this->name = name; }
+		void SetActive(bool active = true) { this->active = active; }
+		Scene* GetScene() { return m_scene; }
+		bool IsActive() { return active; }
 		Transform m_transform;
 
 		friend class Scene;
 	protected:
+		bool active = true;
+
 		std::string name;
 		std::string tag; //enemy & player
 		bool m_destroy = false;

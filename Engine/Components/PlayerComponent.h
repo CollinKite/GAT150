@@ -10,6 +10,8 @@ namespace crae
 		float speed{ 0 };
 	public:
 		PlayerComponent() = default;
+		CLASS_DECLARATION(PlayerComponent)
+
 
 		void Initialize() override;
 		void Update() override;

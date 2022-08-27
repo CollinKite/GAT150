@@ -8,7 +8,7 @@ namespace crae
 	void ContactListener::BeginContact(b2Contact* contact)
 	{
 		b2Fixture* fixtureA = contact->GetFixtureA();
-		b2Fixture* fixtureB = contact->GetFixtureA();
+		b2Fixture* fixtureB = contact->GetFixtureB();
 
 		if (fixtureA->GetUserData().pointer && fixtureB->GetUserData().pointer)
 		{
@@ -29,7 +29,7 @@ namespace crae
 	void ContactListener::EndContact(b2Contact* contact)
 	{
 		b2Fixture* fixtureA = contact->GetFixtureA();
-		b2Fixture* fixtureB = contact->GetFixtureA();
+		b2Fixture* fixtureB = contact->GetFixtureB();
 
 		if (fixtureA->GetUserData().pointer && fixtureB->GetUserData().pointer)
 		{

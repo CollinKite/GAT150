@@ -1,4 +1,5 @@
 #include "Engine.h"
+#include "CollinGame.h"
 
 #include <iostream>
 #include <vector>
@@ -14,26 +15,20 @@ int main()
 	crae::g_audioSystem.Initialize();
 	crae::g_resources.Initialize();
 	crae::g_physicsSystem.Initialize();
+	crae::Engine::Instance().Register();
 
 	crae::g_renderer.CreateWindow("Game Engine", 800, 600);
 	crae::g_renderer.SetClearColor(crae::Color{ 0,0,0,255 });
 
-	crae::Engine::Instance().Register();
+	//create game
+	std::unique_ptr<CollinGame> game = std::make_unique<CollinGame>();
+	game->Initialize();
 
 
-	/*crae::g_audioSystem.AddAudio("laser", "Audio/laser.wav");*/
 
 
 
-	//scene
-	crae::Scene scene;
-
-	rapidjson::Document document;
-	bool success = crae::json::Load("Models/level.txt", document);
-	assert(success);
-
-	scene.Read(document);
-	scene.Initialize();
+	
 
 	bool quit = false;
 	while (!quit)
@@ -44,15 +39,19 @@ int main()
 
 		//angle += 360.0f * crae::g_time.deltaTime;
 			
-		scene.Update();
+		game->Update();
 		crae::g_physicsSystem.Update();
 
 		crae::g_renderer.BeginFrame();
-		scene.Draw(crae::g_renderer);
+		game->Draw(crae::g_renderer);
 		crae::g_renderer.EndFrame();
 	}
+	game->Shutdown();
+	game.reset();
 
-	//crae::g_physicsSystem.Shutdown();
+	crae::Factory::Instance().Shutdown();
+
+	crae::g_physicsSystem.Shutdown();
 	crae::g_resources.Shutdown();
 	crae::g_inputSystem.Shutdown();
 	crae::g_audioSystem.Shutdown();

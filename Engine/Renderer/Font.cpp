@@ -1,50 +1,66 @@
 #include "Font.h" 
+#include "Math/Color.h"
+#include "Core/Logger.h"
+
+#include <SDL_surface.h>
 #include <SDL_ttf.h> 
+#include <iostream>
+
 
 namespace crae
 {
-	Font::Font(const std::string& filename, void* data)
-	{
-		int* fontSize = static_cast<int*>(data);
-		// !! call Load() function below passing filename and fontSize 
-		Create(filename, *fontSize);
-	}
+    Font::Font(const std::string& filename, int fontSize)
+    {
+        // !! call Load() function below passing filename and fontSize 
+        Load(filename, fontSize);
 
-	Font::~Font()
-	{
-		// !! if m_ttfFont not null, close font (TTF_CloseFont) 
-		if (m_ttfFont)
-		{
-			TTF_CloseFont(m_ttfFont);
-			m_ttfFont = nullptr;
-		}
-	}
+    }
 
-	bool Font::Create(std::string filename, ...)
-	{
-		// va_list - type to hold information about variable arguments 
-		va_list args;
+    Font::~Font()
+    {
+        // !! if m_ttfFont not null, close font (TTF_CloseFont) 
+        if (m_ttfFont)
+        {
+            TTF_CloseFont(m_ttfFont);
+        }
+    }
 
-		// va_start - enables access to variadic function arguments 
-		va_start(args, filename);
+    bool Font::Create(std::string name, ...)
+    {
 
-		// va_arg - accesses the next variadic function arguments 
-		int fontsize = va_arg(args, int);
+        va_list args;
 
-		// va_end - ends traversal of the variadic function arguments 
-		va_end(args);
+        va_start(args, name);
 
-		// create texture (returns true/false if successful) 
-		Load(filename, fontsize);
-		return true;
-	}
+        int fontSize = va_arg(args, int);
 
-	void Font::Load(const std::string& filename, int fontSize)
-	{
-		// !! call TTF_OpenFont  
-		// !! use filename.c_str() to get the c-style string 
-		// !! assign the return value of TTF_OpenFont to m_ttfFont
-		TTF_Init();
-		m_ttfFont = TTF_OpenFont(filename.c_str(), fontSize);
-	}
+        va_end(args);
+
+        return Load(name, fontSize);
+    }
+
+    bool Font::Load(const std::string& filename, int fontSize)
+    {
+        // !! call TTF_OpenFont  
+        TTF_Init();
+        m_ttfFont = TTF_OpenFont(filename.c_str(), fontSize);
+
+        return m_ttfFont;
+        // !! use filename.c_str() to get the c-style string 
+        // !! assign the return value of TTF_OpenFont to m_ttfFont 
+    }
+
+    SDL_Surface* Font::CreateSurface(const std::string& text, const Color& color)
+    {
+        SDL_Color c = *((SDL_Color*)(&color));
+
+        SDL_Surface* surface = TTF_RenderText_Solid(m_ttfFont, text.c_str(), c);
+
+        if (!surface)
+        {
+            LOG(SDL_GetError());
+        }
+
+        return surface;
+    }
 }

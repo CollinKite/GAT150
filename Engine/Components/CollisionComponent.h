@@ -12,6 +12,10 @@ namespace crae
         using functionPtr = std::function<void(Actor*)>;
 
 	public:
+
+        CLASS_DECLARATION(CollisionComponent)
+
+
         virtual void Initialize() override;
         virtual void Update() override;
 
