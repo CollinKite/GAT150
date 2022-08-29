@@ -11,6 +11,7 @@
 #include "Framework/Game.h"
 #include "Framework/Singleton.h"
 #include "Framework/Factory.h"
+#include "Framework/EventManager.h"
 
 #include "Input/InputSystem.h"
 #include "Audio/AudioSystem.h"
@@ -41,6 +42,7 @@
 //#include <memory>
 //#include <list>
 //#include <vector>
+#include <variant>
 
 
 namespace crae
@@ -52,6 +54,7 @@ namespace crae
 	extern AudioSystem g_audioSystem;
 	extern ResourceManager g_resources;
 	extern PhysicsSystem g_physicsSystem;
+	extern EventManager g_eventManager;
 
 	class Engine : public Singleton<Engine>
 	{

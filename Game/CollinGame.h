@@ -1,8 +1,18 @@
 #pragma once
 #include "Framework/Game.h"
+#include "Framework/Event.h"
 
 class CollinGame : public crae::Game
 {
+public:
+	enum class gameState
+	{
+		titleScreen,
+		startLevel,
+		game,
+		playerDead,
+		gameOver
+	};
 public:
 
 	// Inherited via Game
@@ -13,5 +23,11 @@ public:
 	virtual void Update() override;
 
 	virtual void Draw(crae::Renderer& renderer) override;
+
+	void OnAddPoints(const crae::Event& event);
+	void OnPlayerDead(const crae::Event& event);
 private:
+	gameState m_gameState = gameState::titleScreen;
+	float m_stateTimer = 0;
+	int m_lives = 3;
 };

@@ -15,6 +15,7 @@ int main()
 	crae::g_audioSystem.Initialize();
 	crae::g_resources.Initialize();
 	crae::g_physicsSystem.Initialize();
+	crae::g_eventManager.Initialize();
 	crae::Engine::Instance().Register();
 
 	crae::g_renderer.CreateWindow("Game Engine", 800, 600);
@@ -51,6 +52,7 @@ int main()
 
 	crae::Factory::Instance().Shutdown();
 
+	crae::g_eventManager.Shutdown();
 	crae::g_physicsSystem.Shutdown();
 	crae::g_resources.Shutdown();
 	crae::g_inputSystem.Shutdown();

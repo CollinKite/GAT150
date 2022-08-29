@@ -177,6 +177,8 @@
     <ClInclude Include="Engine.h" />
     <ClInclude Include="FrameWork\Actor.h" />
     <ClInclude Include="Framework\Component.h" />
+    <ClInclude Include="Framework\Event.h" />
+    <ClInclude Include="Framework\EventManager.h" />
     <ClInclude Include="FrameWork\Game.h" />
     <ClInclude Include="FrameWork\GameObject.h" />
     <ClInclude Include="FrameWork\Scene.h" />
@@ -223,6 +225,7 @@
     <ClCompile Include="Core\Time.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="FrameWork\Actor.cpp" />
+    <ClCompile Include="Framework\EventManager.cpp" />
     <ClCompile Include="FrameWork\Scene.cpp" />
     <ClCompile Include="Framework\Factory.h" />
     <ClCompile Include="Input\InputSystem.cpp" />

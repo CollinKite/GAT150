@@ -36,6 +36,7 @@ namespace crae
 		const std::string& GetTag() { return tag; }
 		void SetTag(const std::string& tag) { this->tag = tag; }
 		void SetDestroy() { m_destroy = true; }
+		bool IsDestroyed() { return m_destroy; }
 		const std::string& GetName() { return name; }
 		void SetName(const std::string& name) { this->name = name; }
 		void SetActive(bool active = true) { this->active = active; }

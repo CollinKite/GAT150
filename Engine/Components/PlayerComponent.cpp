@@ -73,6 +73,12 @@ void crae::PlayerComponent::OnCollisionEnter(Actor* other)
 {
 	if (other->GetName() == "Coin")
 	{
+		Event event;
+		event.name = "EVENT_ADD_POINT";
+		event.data = 100;
+		//crae::g_
+
+		g_eventManager.Notify(event);
 		other->SetDestroy();
 	}
 	std::cout << "player enter\n";
