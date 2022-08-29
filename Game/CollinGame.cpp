@@ -49,6 +49,7 @@ void CollinGame::Update()
 
 			m_scene->Add(std::move(actor));
 		}
+		m_gameState = gameState::game;
 		break;
 	case CollinGame::gameState::game:
 		break;

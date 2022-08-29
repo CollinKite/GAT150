@@ -40,4 +40,8 @@ namespace crae
 
 		return true;
 	}
+	std::unique_ptr<GameObject> TextComponent::Clone()
+	{
+		return std::unique_ptr<GameObject>();
+	}
 }

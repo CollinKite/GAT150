@@ -5,6 +5,8 @@
 
 namespace crae
 {
+	class GameObject;
+
 	class EventManager
 	{
 	public:

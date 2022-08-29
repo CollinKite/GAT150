@@ -29,5 +29,8 @@ namespace crae
 
 		std::shared_ptr<Font> m_font;
 		std::shared_ptr<Texture> m_texture;
+
+		// Inherited via RenderComponent
+		virtual std::unique_ptr<GameObject> Clone() override;
 	};
 }
