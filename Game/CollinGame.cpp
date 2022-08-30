@@ -1,8 +1,12 @@
 #include "CollinGame.h"
+#include "GameComponents/EnemyComponent.h"
 #include "Engine.h"
 
 void CollinGame::Initialize()
 {
+	REGISTER_CLASS(EnemyComponent);
+
+
 	m_scene = std::make_unique<crae::Scene>();
 
 	rapidjson::Document document;
@@ -22,7 +26,8 @@ void CollinGame::Initialize()
 
 
 
-	crae::g_eventManager.Subscribe("EVENT_ADD_POINTS", std::bind(&CollinGame::OnAddPoints, this, std::placeholders::_1));
+	crae::g_eventManager.Subscribe("EVENT_ADD_POINTS", std::bind(&CollinGame::OnNotify, this, std::placeholders::_1));
+	crae::g_eventManager.Subscribe("EVENT_PLAYER_DEAD", std::bind(&CollinGame::OnNotify, this, std::placeholders::_1));
 }
 
 void CollinGame::Shutdown()
@@ -41,9 +46,19 @@ void CollinGame::Update()
 		}
 		break;
 	case CollinGame::gameState::startLevel:
+		//Spawn Coins
 		for (int i = 0; i < 10; i++)
 		{
 			auto actor = crae::Factory::Instance().Create<crae::Actor>("Coin");
+			actor->m_transform.position = { crae::randomf(0,800), 100.0f };
+			actor->Initialize();
+
+			m_scene->Add(std::move(actor));
+		}
+		//Spawn Enemies
+		for (int i = 0; i < 3; i++)
+		{
+			auto actor = crae::Factory::Instance().Create<crae::Actor>("Ghost");
 			actor->m_transform.position = { crae::randomf(0,800), 100.0f };
 			actor->Initialize();
 
@@ -76,12 +91,26 @@ void CollinGame::Draw(crae::Renderer& renderer)
 void CollinGame::OnAddPoints(const crae::Event& event)
 {
 	AddPoints(std::get<int>(event.data));
+	std::cout << GetScore() << std::endl;
 
-	std::cout << event.name << std::endl;
-	std::cout << std::get<int>(event.data) << std::endl;
 }
 
 void CollinGame::OnPlayerDead(const crae::Event& event)
 {
 	m_gameState = gameState::playerDead;
+	m_lives--;
+	m_stateTimer = 3;
+}
+
+void CollinGame::OnNotify(const crae::Event& event)
+{
+	if (event.name == "EVENT_ADD_POINTS")
+	{
+		OnAddPoints(event);
+	}
+	if (event.name == "EVENT_PLAYER_DEAD")
+	{
+		OnPlayerDead(event);
+	}
+
 }

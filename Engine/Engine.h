@@ -38,6 +38,7 @@
 #include "Components/ModelComponent.h"
 #include "Components/TextComponent.h"
 #include "Components/TilemapComponent.h"
+#include "Components/CharacterComponent.h"
 
 //#include <memory>
 //#include <list>

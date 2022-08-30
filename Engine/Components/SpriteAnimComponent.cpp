@@ -21,7 +21,7 @@ void crae::SpriteAnimComponent::Update()
 
 void crae::SpriteAnimComponent::Draw(Renderer& renderer)
 {
-    renderer.Draw(m_texture, GetSource(), m_owner->m_transform);
+    renderer.Draw(m_texture, GetSource(), m_owner->m_transform, registration, flipHorizontal);
 }
 
 crae::Rect& crae::SpriteAnimComponent::GetSource()

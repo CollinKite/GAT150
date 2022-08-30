@@ -31,8 +31,7 @@ namespace crae
 		template<typename T>
 		T* GetComponent();
 
-		virtual void OnCollision(Actor* other) {}
-		float GetRadius() { return 0; }// m_model.GetRadius(); }
+
 		const std::string& GetTag() { return tag; }
 		void SetTag(const std::string& tag) { this->tag = tag; }
 		void SetDestroy() { m_destroy = true; }

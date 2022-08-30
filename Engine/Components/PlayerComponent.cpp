@@ -5,12 +5,7 @@
 
 void crae::PlayerComponent::Initialize()
 {
-	auto component = m_owner->GetComponent<CollisionComponent>();
-	if (component)
-	{
-		component->SetCollisionEnter(std::bind(&PlayerComponent::OnCollisionEnter, this, std::placeholders::_1));
-		component->SetCollisionExit(std::bind(&PlayerComponent::OnCollisionExit, this, std::placeholders::_1));
-	}
+	CharacterComponent::Initialize();
 }
 
 void crae::PlayerComponent::Update()
@@ -41,10 +36,12 @@ void crae::PlayerComponent::Update()
 		thrust = speed;
 	}
 	
+	Vector2 velocity;
 	auto component = m_owner->GetComponent<PhysicsComponent>();
 	if (component)
 	{
 		component->ApplyForce(direction * speed);
+		velocity = direction * speed;
 	}
 
 	//jump
@@ -56,6 +53,12 @@ void crae::PlayerComponent::Update()
 			component->ApplyForce(Vector2::up * speed * 10);
 		}
 	}
+
+	auto renderComponent = m_owner->GetComponent<RenderComponent>();
+	if (renderComponent)
+	{
+		if (velocity.x != 0) renderComponent->setFlipHorizontal(velocity.x < 0);
+	}
 }
 
 bool crae::PlayerComponent::Write(const rapidjson::Value& value) const
@@ -65,26 +68,56 @@ bool crae::PlayerComponent::Write(const rapidjson::Value& value) const
 
 bool crae::PlayerComponent::Read(const rapidjson::Value& value)
 {
-	READ_DATA(value, speed);
+	CharacterComponent::Read(value);
+	READ_DATA(value, jump);
 	return true;
+}
+
+void crae::PlayerComponent::OnNotify(const Event& event)
+{
+	if (event.name == "EVENT_DAMAGE")
+	{
+		health -= std::get<float>(event.data);
+		std::cout << health << std::endl;
+		if (health <= 0)
+		{
+			m_owner->SetDestroy();
+			Event event;
+			event.name = "EVENT_PLAYER_DEAD";
+
+			g_eventManager.Notify(event);
+		}
+	}
+	if (event.name == "EVENT_HEALTH")
+	{
+		//health event stuffs
+	}
 }
 
 void crae::PlayerComponent::OnCollisionEnter(Actor* other)
 {
-	if (other->GetName() == "Coin")
+	if (other->GetTag() == "Pickup")
 	{
 		Event event;
 		event.name = "EVENT_ADD_POINT";
 		event.data = 100;
-		//crae::g_
 
 		g_eventManager.Notify(event);
 		other->SetDestroy();
 	}
-	std::cout << "player enter\n";
+	if (other->GetTag() == "Enemy")
+	{
+		Event event;
+		event.name = "EVENT_DAMAGE";
+		event.data = damage;
+		event.reciever = other;
+
+		g_eventManager.Notify(event);
+	}
+	//std::cout << "player enter\n";
 }
 
 void crae::PlayerComponent::OnCollisionExit(Actor* other)
 {
-	std::cout << "player exit\n";
+	//std::cout << "player exit\n";
 }
