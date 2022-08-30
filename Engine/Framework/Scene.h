@@ -31,6 +31,12 @@ namespace crae
 		void Add(std::unique_ptr<Actor> actor);
 		void RemoveAll();
 
+		template<typename T = Actor>
+		T* GetActorFromName(const std::string& name);
+
+		template<typename T = Actor>
+		std::vector<T*> GetActorsFromTag(const std::string& tag);
+
 		template<typename T>
 		T* GetActor();
 
@@ -41,6 +47,44 @@ namespace crae
 		std::list<std::unique_ptr<Actor>> m_actors;
 
 	};
+
+	template<typename T>
+	inline T* Scene::GetActorFromName(const std::string& name)
+	{
+		for(auto& actor : m_actors)
+		{
+			//  !! compare name to actor GetName()) 
+			if (actor->GetName() == name)
+				{
+					return dynamic_cast<T*>(actor.get());
+				}
+		}
+
+		return nullptr;
+	}
+
+	template<typename T>
+	inline std::vector<T*> Scene::GetActorsFromTag(const std::string& tag)
+	{
+		std::vector<T*> result;
+
+		//  !! for loop (range based) through m_actors 
+		for(auto& actor : m_actors)
+		{
+			if(actor->GetTag() == tag)
+			{
+				 T * tagActor = dynamic_cast<T*>(actor.get()); 
+				 if (tagActor)
+				 {
+					 result.push_back(tagActor);
+				 }//  !! push back tagActor to result vector 
+			}
+		}
+
+		return result;
+	}
+
+
 	template<typename T>
 	inline T* Scene::GetActor()
 	{

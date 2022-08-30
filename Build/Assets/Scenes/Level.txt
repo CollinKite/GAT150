@@ -55,10 +55,6 @@
                400,
                300
             ],
-            "scale":[
-               2,
-               2
-            ],
             "rotation":0
          },
          "components":[
@@ -94,34 +90,6 @@
                "play_on_start":true,
                "loop":true,
                "pitch":1
-            }
-         ]
-      },
-      {
-         "type":"Actor",
-         "name":"Floor",
-         "transform":{
-            "position":[
-               400,
-               520
-            ],
-            "scale":[
-               1,
-               1
-            ],
-            "rotation":0
-         },
-         "components":[
-            {
-               "type":"RBPhysicsComponent",
-               "data.is_dynamic":false
-            },
-            {
-               "type":"CollisionComponent",
-               "data.size":[
-                  800,
-                  24
-               ]
             }
          ]
       }

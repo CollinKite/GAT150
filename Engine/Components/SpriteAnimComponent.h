@@ -1,6 +1,5 @@
 #pragma once
 #include "RenderComponent.h"
-#include "Math/Rect.h"
 
 namespace crae
 {
@@ -30,6 +29,8 @@ namespace crae
 		// Inherited via RenderComponent
 		virtual void Update() override;
 		virtual void Draw(Renderer& renderer) override;
+
+		virtual Rect& GetSource() override;
 
 
 		// Inherited via RenderComponent

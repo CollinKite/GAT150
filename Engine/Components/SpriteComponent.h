@@ -9,7 +9,6 @@ namespace crae
 	class SpriteComponent : public RenderComponent
 	{
 	public:
-		Rect source;
 		std::shared_ptr<Texture> m_texture;
 
 	public:
