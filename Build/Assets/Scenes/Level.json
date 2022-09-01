@@ -1,0 +1,91 @@
+{
+    "actors": [
+        {
+            "type": "Actor",
+            "name": "Camera",
+            "transform": {
+                "position": [
+                    400,
+                    300
+                ],
+                "scale": [
+                    1,
+                    1
+                ],
+                "rotation": 0
+            },
+            "components": [
+                {
+                    "type": "CameraComponent",
+                    "viewport_size": [ 800, 600 ],
+                    "camera_speed": 1000
+                }
+            ]
+        },
+        {
+            "type": "Actor",
+            "name": "Music",
+            "components": [
+                {
+                    "type": "AudioComponent",
+                    "sound_name": "audio/music.wav",
+                    "loop": true,
+                    "play_on_start": true
+                }
+            ]
+        },
+        {
+            "type": "Actor",
+            "transform": {
+                "position": [
+                    400,
+                    300
+                ],
+                "scale": [
+                    1,
+                    1
+                ],
+                "rotation": 0
+            },
+            "components": [
+                {
+                    "type": "SpriteComponent",
+                    "texture_name": "Textures/background.png"
+                }
+            ]
+        },
+        {
+            "type": "Actor",
+            "name": "Text",
+            "transform": {
+                "position": [
+                    40,
+                    30
+                ],
+                "scale": [
+                    1,
+                    1
+                ],
+                "rotation": 0
+            },
+            "components": [
+                {
+                    "type": "TextComponent",
+                    "text": "Hello World!",
+                    "font_name": "Fonts/Arcade.ttf",
+                    "font_size": 16,
+                    "registration": [
+                        0.0,
+                        0.5
+                    ],
+                    "color": [
+                        255,
+                        255,
+                        0,
+                        255
+                    ]
+                }
+            ]
+        }
+    ]
+}

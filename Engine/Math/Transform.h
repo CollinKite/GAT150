@@ -22,7 +22,7 @@ namespace crae
 		void Update()
 		{
 			Matrix3x3 mxScale = Matrix3x3::CreateScale(scale);
-			Matrix3x3 mxRotation = Matrix3x3::CreateRoation(math::DegToRad(rotation));
+			Matrix3x3 mxRotation = Matrix3x3::CreateRotation(math::DegToRad(rotation));
 			Matrix3x3 mxTranslation = Matrix3x3::CreateTranslation(position);
 
 			matrix = { mxTranslation * mxRotation * mxScale }; //ORDER MATTERS (Right to Left is order)
@@ -32,7 +32,7 @@ namespace crae
 		void Update(const Matrix3x3& parent)
 		{
 			Matrix3x3 mxScale = Matrix3x3::CreateScale(scale);
-			Matrix3x3 mxRotation = Matrix3x3::CreateRoation(math::DegToRad(rotation));
+			Matrix3x3 mxRotation = Matrix3x3::CreateRotation(math::DegToRad(rotation));
 			Matrix3x3 mxTranslation = Matrix3x3::CreateTranslation(position);
 
 			matrix = { mxTranslation * mxRotation * mxScale }; //ORDER MATTERS (Right to Left is order)
@@ -43,7 +43,7 @@ namespace crae
 		operator Matrix3x3 () const
 		{
 			Matrix3x3 mxScale = Matrix3x3::CreateScale(scale);
-			Matrix3x3 mxRotation = Matrix3x3::CreateRoation(math::DegToRad(rotation));
+			Matrix3x3 mxRotation = Matrix3x3::CreateRotation(math::DegToRad(rotation));
 			Matrix3x3 mxTranslation = Matrix3x3::CreateTranslation(position);
 
 			return { mxTranslation * mxRotation * mxScale };

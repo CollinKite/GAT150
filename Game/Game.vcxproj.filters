@@ -41,13 +41,13 @@
     <Text Include="..\Build\Assets\Models\player1.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="..\Build\Assets\Scenes\Level.txt">
+    <Text Include="..\Build\Assets\Scenes\Level.json">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="..\Build\Assets\Scenes\Prefabs.txt">
+    <Text Include="..\Build\Assets\Scenes\Prefabs.json">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="..\Build\Assets\Scenes\Tilemap.txt">
+    <Text Include="..\Build\Assets\Scenes\Tilemap.json">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

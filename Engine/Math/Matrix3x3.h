@@ -19,7 +19,7 @@ namespace crae
 
 		static Matrix3x3 CreateScale(const Vector2& scale);
 		static Matrix3x3 CreateScale(float scale);
-		static Matrix3x3 CreateRoation(float radians);
+		static Matrix3x3 CreateRotation(float radians);
 		static Matrix3x3 CreateTranslation(const Vector2& translate);
 
 		Vector2 GetTranslation() const;
@@ -100,7 +100,7 @@ namespace crae
 		return mx;
 	}
 
-	inline Matrix3x3 Matrix3x3::CreateRoation(float radians)
+	inline Matrix3x3 Matrix3x3::CreateRotation(float radians)
 	{
 		Matrix3x3 mx;
 

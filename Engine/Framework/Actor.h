@@ -46,6 +46,7 @@ namespace crae
 		friend class Scene;
 	protected:
 		bool active = true;
+		float lifespan = 0;
 
 		std::string name;
 		std::string tag; //enemy & player

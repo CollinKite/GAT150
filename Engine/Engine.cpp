@@ -24,5 +24,6 @@ namespace crae
 		REGISTER_CLASS(CollisionComponent);
 		REGISTER_CLASS(TextComponent);
 		REGISTER_CLASS(TilemapComponent);
+		REGISTER_CLASS(CameraComponent);
 	}
 }

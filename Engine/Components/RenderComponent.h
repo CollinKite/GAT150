@@ -13,8 +13,8 @@ namespace crae
 		virtual void Draw(Renderer& renderer) = 0;
 
 		virtual Rect& GetSource() { return source; }
-		void setFlipHorizontal(bool flip = true) {flipHorizontal = flip; }
-		bool getFlipHorizontal() { return flipHorizontal; }
+		void SetFlipHorizontal(bool flip = true) {flipHorizontal = flip; }
+		bool SetFlipHorizontal() { return flipHorizontal; }
 
 	protected:
 		Rect source;

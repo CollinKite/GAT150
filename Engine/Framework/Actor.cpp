@@ -2,6 +2,7 @@
 #include "Factory.h"
 #include "Renderer/Renderer.h"
 #include "Components/RenderComponent.h"
+#include "Engine.h"
 namespace crae
 {
 	Actor::Actor(const Actor& other)
@@ -9,6 +10,7 @@ namespace crae
 		name = other.name;
 		tag = other.tag;
 		m_transform = other.m_transform;
+		lifespan = other.lifespan;
 
 		m_scene = other.m_scene;
 
@@ -26,6 +28,14 @@ namespace crae
 		if (!active)
 		{
 			return;
+		}
+		if (lifespan != 0)
+		{
+			lifespan -= g_time.deltaTime;
+			if (lifespan <= 0)
+			{
+				SetDestroy();
+			}
 		}
 		for (auto& component : m_components)
 		{
@@ -100,6 +110,7 @@ namespace crae
 		READ_DATA(value, tag);
 		READ_DATA(value, name);
 		READ_DATA(value, active);
+		READ_DATA(value, lifespan);
 
 		if (value.HasMember("transform"))
 		{

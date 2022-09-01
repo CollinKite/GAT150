@@ -10,7 +10,7 @@ void CollinGame::Initialize()
 	m_scene = std::make_unique<crae::Scene>();
 
 	rapidjson::Document document;
-	std::vector<std::string> sceneNames = { "scenes/prefabs.txt", "scenes/tilemap.txt", "scenes/level.txt" };
+	std::vector<std::string> sceneNames = { "scenes/prefabs.json", "scenes/tilemap.json", "scenes/level.json" };
 
 	for (auto sceneName : sceneNames)
 	{
@@ -46,6 +46,13 @@ void CollinGame::Update()
 		}
 		break;
 	case CollinGame::gameState::startLevel:
+		{
+			auto actor = crae::Factory::Instance().Create<crae::Actor>("Player");
+			actor->m_transform.position = 400.0f, 100.0f;
+			actor->Initialize();
+
+			m_scene->Add(std::move(actor));
+		}
 		//Spawn Coins
 		for (int i = 0; i < 10; i++)
 		{
